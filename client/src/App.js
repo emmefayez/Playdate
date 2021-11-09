@@ -60,11 +60,11 @@ catch(err){
   </button>
       </nav>
 
-<AddForm addNewList={newActivity => setActivities(newActivity)} />
+<AddForm onDone={newActivity => setActivities(newActivity)} />
 
       {/* {CATALOGUE} */}
       <div className="container">
-     <h1>Playdate</h1>
+     <h1></h1>
      <div id="activities_catalogue">
        <h2>Activities</h2>
        { activities.map((activity) => (
@@ -72,11 +72,12 @@ catch(err){
            <div >
              <li className="list-group-item">
                <div className="card-title">
-             {activity.name}
+             Title: {activity.name}
              </div>
              <div className="card-text">
-             {activity.age_range}
-             {activity.description}
+             <span className="mb-4">From children up to: {activity.age_range} y.o</span>
+             <span>This is an {activity.outdoor === 1 ? 'outdoor' : 'indoor'} activity</span>
+             <p>{activity.description}</p>
              </div>
              
              <button className="btn btn-primary">Update activity</button>

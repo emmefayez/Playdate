@@ -32,8 +32,8 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
         body: JSON.stringify(newActivity)
       });
       const activities = await response.json();
-      //console.log("hello", activities)
-     props.addNewList(activities); 
+      
+     props.onDone(activities); 
     } catch (error) {
       setError(error.message);
     }
