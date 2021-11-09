@@ -41,8 +41,7 @@ try{
       headers: {
         "Content-Type": "application/json"
       }});
-  const data = await response.json();
-  setActivities(data);
+  getActivities();
 }
 catch(err){
    setError(err);
@@ -61,7 +60,7 @@ catch(err){
   </button>
       </nav>
 
-<AddForm activityList={newActivity => setActivities(newActivity)} />
+<AddForm addNewList={newActivity => setActivities(newActivity)} />
 
       {/* {CATALOGUE} */}
       <div className="container">
@@ -81,7 +80,7 @@ catch(err){
              </div>
              
              <button className="btn btn-primary">Update activity</button>
-             <button className="btn btn-danger" onClick={()=>deleteActivity(activity.id)}>Delete activity</button>
+             <button className="btn btn-danger" onClick={()=> deleteActivity(activity.id)}>Delete activity</button>
              </li>
            </div>
          </div>

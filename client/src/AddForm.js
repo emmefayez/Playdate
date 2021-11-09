@@ -33,7 +33,7 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
       });
       const activities = await response.json();
       //console.log("hello", activities)
-     props.activityList(activities); 
+     props.addNewList(activities); 
     } catch (error) {
       setError(error.message);
     }
@@ -51,14 +51,12 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
     <input value={name} name="name" type="text" onChange={(e) => handleInputsChange(e)}/>
     </div>
     <div className="mb-4">
-    {/* <label>Age</label>
-    <input value={age_range} type="number" min="1" max="10"/> */}
-    {/* <label>Indoor
-    <input value={indoor} type="checkbox" aria-label="Checkbox for following text input"/>
-    </label>
-    <label>Outdoor
-    <input value={outdoor} type="checkbox" aria-label="Checkbox for following text input"/>
-    </label> */}
+    <label>Age</label>
+    <input value={age_range} type="number" min="1" max="10"/>
+  <select name="type_of_activity">
+      <option name="outdoor" value={outdoor}>Outdoor</option>
+       <option name="indoor" value={indoor}>Indoor</option>
+      </select> 
     </div>
     <div>
       <label>Description</label>
