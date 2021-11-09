@@ -21,11 +21,11 @@ con.connect(function(err) {
   let activities =
     `CREATE TABLE activities (
 	id INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(255) NOT NULL UNIQUE,
-	age_range INT NOT NULL,
-	indoor BOOLEAN NOT NULL,
-	outdoor BOOLEAN NOT NULL,
-	description TEXT NOT NULL,
+	name VARCHAR(255),
+	age_range INT,
+	indoor BOOLEAN ,
+	outdoor BOOLEAN,
+	description TEXT,
 	PRIMARY KEY (id)
 );
 `

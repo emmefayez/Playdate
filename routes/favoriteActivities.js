@@ -28,15 +28,14 @@ router.get('/', async function(req, res, next) {
 
 
 //ADD activity to favorities
-router.post('/favorities_activities', async function(req, res, next) {
+router.post('/activities/:id', async function(req, res, next) {
  
   const {activity_id, user_id} = req.body;
 
   try{
     await db(`INSERT INTO favorities_activities (activity_id) VALUES (${activity_id})`)
      await db(`INSERT INTO favorities_activities (user_id) VALUES (${user_id})`)
-    const results = await db("SELECT * FROM favorities_activities ORDER BY id ASC;");
-    res.send(results.data);
+    res.send({message: "activity added to favorities"});
   }
   catch(err){
        res.status(500).send(err);

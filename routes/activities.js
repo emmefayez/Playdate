@@ -13,7 +13,7 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-//POST new activity - it works in local host, I see error in postman
+//POST new activity 
 router.post('/', async function(req, res, next) {
  
   const {name, age_range, indoor, outdoor, description} = req.body;
@@ -28,22 +28,23 @@ router.post('/', async function(req, res, next) {
   }
 });
 
-//UPDATE an acitivity //not working
-// router.put('/:id', async function(req, res, next) {
-//   const { id } = req.params;
-//   const {age_range, indoor, outdoor, description} = req.body;
+//UPDATE an acitivity 
+router.put('/:id', async function(req, res, next) {
+  const { id } = req.params;
+  const {name, age_range, indoor, outdoor, description} = req.body;
+ 
+  try{
+    //const res = await db(`UPDATE activities  SET name = 'activity1', age_range = 5 , indoor= 0, outdoor= 1, description='exampl22e' WHERE id=4`);
+    await db(`UPDATE activities  SET name='${name}', age_range =${age_range} , indoor=${indoor}, outdoor=${outdoor}, description='${description}' WHERE id=${Number(id)}`);
+    res.status(200).send({message: "activity updated"});
+  }
+  catch(err){
+    console.log(err)
+       res.status(500).send(err);
+  }
+});
 
-//   try{
-//     await db(`UPDATE activities  SET age_range = '${age_range}', indoor='${indoor}', outdoor='${outdoor}', description='${description}' WHERE id="${id}";`)
-//     const results = await db(`SELECT FROM activities WHERE id = "${id}";`);
-//     res.status(204).send(results.data);
-//   }
-//   catch(err){
-//        res.status(500).send(err);
-//   }
-// });
-
-//DELETE an activity by ID -it works in local but I see error in postman
+//DELETE an activity by ID 
 
 router.delete('/:id', async function(req, res, next) {
   
@@ -51,8 +52,7 @@ router.delete('/:id', async function(req, res, next) {
   
   try{
     await db(`DELETE FROM activities WHERE id = "${id}";`)
-    const results = await db("SELECT * FROM activities ORDER BY id ASC;");
-    res.send(results.data);
+    res.send({message:"activity deleted"});
   }
   catch(err){
        res.status(500).send(err);

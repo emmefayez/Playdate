@@ -1,23 +1,95 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import AddForm from './AddForm';
 import './App.css';
 
 
 function App() {
 
-const[activities, setActivities] = useState("");
+const [activities, setActivities] = useState([]);
+const [error, setError] = useState("");
+
+useEffect(() => {
+    getActivities();
+  }, []);
+
+//render list of activities
+const getActivities = async () =>{
+try{
+  const response = await fetch('/activities');
+  console.log(response)
+  const data = await response.json();
+  console.log("DATA",data)
+  setActivities(data);
+
+}
+catch(err){
+   setError(err.message);
+}
+  };
 
 
+
+
+//FOR THE UPDATE ANOTHER COMPONENT?
+
+
+//DELETE
+  const deleteActivity = async (id) =>{
+try{
+  const response = await fetch(`/activities/${id}`,{
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }});
+  const data = await response.json();
+  setActivities(data);
+}
+catch(err){
+   setError(err);
+}
+  };
 
 
   return (
     <div className="App">
+      <nav>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    Admin
+  </button>
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    User
+  </button>
+      </nav>
+
+<AddForm activityList={newActivity => setActivities(newActivity)} />
+
+      {/* {CATALOGUE} */}
       <div className="container">
      <h1>Playdate</h1>
      <div id="activities_catalogue">
        <h2>Activities</h2>
+       { activities.map((activity) => (
+         <div key={activity.id} className="card-body">
+           <div >
+             <li className="list-group-item">
+               <div className="card-title">
+             {activity.name}
+             </div>
+             <div className="card-text">
+             {activity.age_range}
+             {activity.description}
+             </div>
+             
+             <button className="btn btn-primary">Update activity</button>
+             <button className="btn btn-danger" onClick={()=>deleteActivity(activity.id)}>Delete activity</button>
+             </li>
+           </div>
+         </div>
+       ))}
      </div>
+     <div id="errorMsg">{error}</div>
      
-     {/* {FORM} */}
+     {/* {SEARCH} */}
      <div id="search_activity" className="container">
      <form>
       <label>Search for keyword</label>
@@ -29,14 +101,14 @@ const[activities, setActivities] = useState("");
     Outdoor
   </label>
 </div>
-<div class="form-check">
+<div className="form-check">
   <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
   <label className="form-check-label" htmlFor="flexRadioDefault2">
     Indoor
   </label>
 </div>
 <label id="age_slider">Age</label>
-<div class="slidecontainer"aria-labelledby="age_slider">
+<div className="slidecontainer"aria-labelledby="age_slider">
   <label aria-label="minimum_age">1</label>
   <input type="range" min="1" max="10"  className="slider" id="myRange" />
   <label aria-label="maximum_age">10</label>
@@ -47,6 +119,7 @@ const[activities, setActivities] = useState("");
      </form>
      </div>
      </div>
+     
     </div>
   );
 }
