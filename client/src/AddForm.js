@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 
 
 function AddForm(props) {   
-const [newActivity, setNewActivity] = useState({name:"", age_range:0, indoor: 0, outdoor:0, description:"" });
+const [newActivity, setNewActivity] = useState({name:"", age_range: 1, indoor: 0, outdoor:0, description:"" });
 const [error, setError] = useState("");
 
 const handleInputsChange = (event) =>{
@@ -52,10 +52,10 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
     </div>
     <div className="mb-4">
     <label>Age</label>
-    <input value={age_range} type="number" min="1" max="10"/>
+    <input value={age_range} type="text" onChange={(e) => handleInputsChange(e)} />
   <select name="type_of_activity">
-      <option name="outdoor" value={outdoor}>Outdoor</option>
-       <option name="indoor" value={indoor}>Indoor</option>
+      <option name="outdoor" value={outdoor} onChange={(e) => handleInputsChange(e)}>Outdoor</option>
+       <option name="indoor" value={indoor} onChange={(e) => handleInputsChange(e)}>Indoor</option>
       </select> 
     </div>
     <div>

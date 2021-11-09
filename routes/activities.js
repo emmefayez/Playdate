@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
 
-/* GET home page. */ //it works
+/* GET home page. */ 
 router.get('/', async function(req, res, next) {
   try{
     const results = await db("SELECT * FROM activities ORDER BY id ASC;");
@@ -12,6 +12,8 @@ router.get('/', async function(req, res, next) {
        res.status(500).send(err);
   }
 });
+
+//FILTER
 
 //POST new activity 
 router.post('/', async function(req, res, next) {
