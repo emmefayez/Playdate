@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import AddForm from './AddForm';
 import './App.css';
-import Home from './Home';
+
 
 
 function Admin() {
