@@ -113,7 +113,7 @@ catch(err){
      <div id="search_activity" className="container">
      <form>
       <label>Search for keyword</label>
-     <input className="form-control" type="text" placeholder="ball, chalks, montessori" name="keyword" value={keyword} onChange={(e) => handleKeyword(e)}/>
+     <input className="form-control mb-4" type="text" placeholder="ball, chalks, montessori" name="keyword" value={keyword} onChange={(e) => handleKeyword(e)}/>
      <button aria-label="Search_button" type="button" className="btn btn-outline-warning" onClick={getActivitiesByKeyword}>Search by Keyword</button>
      <div id="searchAge">
        <hr/>
@@ -121,7 +121,7 @@ catch(err){
 <div className="slidecontainer"aria-labelledby="age_slider">
   <label aria-label="minimum_age">From 1 to 10</label>
   <input type="number" min="1" max="10" value={age} name="age" onChange={(e) => handleAge(e)} />
-  <button aria-label="Search_button" type="button" className="btn btn-outline-warning" onClick={getActivitiesByAge}>Search by Age</button>
+  <button aria-label="Search_button" type="button" className="btn btn-outline-warning m-2" onClick={getActivitiesByAge}>Search by Age</button>
 </div>
 </div>
 

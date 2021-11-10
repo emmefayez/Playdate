@@ -49,11 +49,11 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
   <form className="form-control" onSubmit={handleSubmit}>
     <div className="mb-4">
     <label>Name</label>
-    <input value={name} name="name" type="text" onChange={(e) => handleInputsChange(e)}/>
+    <input className="m-4" value={name} name="name" type="text" onChange={(e) => handleInputsChange(e)}/>
     </div>
     <div className="mb-4">
     <label>Age</label>
-    <input value={age_range} type="number" onChange={(e) => handleInputsChange(e)} />
+    <input className= "m-4" value={age_range} type="number" onChange={(e) => handleInputsChange(e)} />
   <select name="type_of_activity">
       <option name="outdoor" value={outdoor} onChange={(e) => handleInputsChange(e)}>Outdoor</option>
        <option name="indoor" value={indoor} onChange={(e) => handleInputsChange(e)}>Indoor</option>
@@ -63,7 +63,9 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
       <label>Description</label>
     <textarea value={description} name="description" onChange={(e) => handleInputsChange(e)}></textarea>
     </div>
-    <button type="submit" className="btn btn-primary" >Add to catalogue</button>
+    
+    <button type="submit" className="btn btn-primary m-2" >Add to catalogue</button>
+    
   </form>
 <div>{error}</div>
 </div>
