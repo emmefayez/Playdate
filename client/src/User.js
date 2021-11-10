@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from "react-router-dom"; 
 
 
 
@@ -6,13 +7,31 @@ import React, {useState, useEffect} from 'react';
 function User(props) {
 
 const [favActivities, setFavActivities] = useState([]);
+const [error, setError] = useState("");
 
 //fetch of just the fav activities 
 //using the props id
+useEffect(() => {
+    getFavActivities();
+  }, []);
+
+const getFavActivities = async () =>{
+
+try{
+  const response = await fetch('/favorities');
+  const data = await response.json();
+  setFavActivities(data);
+
+}
+catch(err){
+   setError(err.message);
+}
+  };
 
 
 return (
     <div className="container">
+      <button className="btn btn-outline-danger m-2"><Link to="/">Back to Homepage</Link></button>
         <div className="user-info">
          {favActivities.map(activity => (  <div key={activity.id} className="card-body">
            <div >
@@ -33,7 +52,7 @@ return (
         <div className="favlist">
 
         </div>
-
+  
     </div>
       
     )

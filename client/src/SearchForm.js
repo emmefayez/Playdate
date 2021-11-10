@@ -14,24 +14,20 @@ const handleKeyword = (event) =>{
   setKeyword(keyword)
   
 }
+
+
 const handleSubmit = (event) => {
     event.preventDefault();
-    props.submitCb(keyword);
+    props.submitCb({age, keyword});
 
  }
-
 
 //FILTER SEARCH by age
 const handleAge= (event) =>{
   event.preventDefault();
   const age = event.target.value;
-  setAge(age)
-
-  
+  setAge(age) 
 }
-
-
-
 
 return (
     <div className="search_form">

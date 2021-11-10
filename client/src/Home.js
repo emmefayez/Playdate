@@ -13,13 +13,16 @@ useEffect(() => {
   }, []);
 
 //render list of activities
-const getActivities = async (keyword = '') =>{
+const getActivities = async (keyword ="", age) =>{
   //declare base url
   //if keyword append that on the end of url
 let url = '/activities'
 if(keyword){
   url += `/${keyword}`
  }
+if(age){
+  url += `/${age}`
+}
 try{
   const response = await fetch(url);
   const data = await response.json();
@@ -43,7 +46,7 @@ catch(err){
       </nav>
       
  <div className="search">
-             <SearchForm submitCb={(keyword)=>getActivities(keyword)}/>    
+             <SearchForm submitCb={({age, keyword}) => getActivities({age, keyword})}/>    
         </div>
 
   <div className="container">
@@ -63,7 +66,7 @@ catch(err){
              <p>{activity.description}</p>
              </div>
              
-             <button className="btn btn-primary m-2"sentInput={()=> setActivities(activity.id)}>Add to favorities</button>
+             <button className="btn btn-primary m-2" addToFav={()=> setActivities(activity.id)} >Add to favorities</button>
              </li>
            </div>
          </div>

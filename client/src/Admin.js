@@ -9,20 +9,20 @@ function Admin() {
 
 const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
-const [keyword, setKeyword] = useState("");
-const [age, setAge] = useState("");
+
 
 useEffect(() => {
     getActivities();
   }, []);
 
 //render list of activities
-const getActivities = async (keyword = '') =>{
-  //declare base url
-  //if keyword append that on the end of url
+const getActivities = async (keyword = '', age) =>{
 let url = '/activities'
 if(keyword){
   url += `/${keyword}`
+ }
+if(age){
+  url += `/${age}`
  }
 try{
   const response = await fetch(url);
@@ -35,40 +35,8 @@ catch(err){
 }
   };
 
-//FILTER SEARCH by keyword
-const handleKeyword = (event) =>{
-  event.preventDefault();   
-  const keyword = event.target.value;
-  setKeyword(keyword)
-  
-}
 
-
-
-
-//FILTER SEARCH by age
-const handleAge= (event) =>{
-  event.preventDefault();
-  const age = event.target.value;
-  setAge(age)
-
-  
-}
-
-const getActivitiesByAge = async () =>{
-try{
-  const response = await fetch(`/activities/${age}`);
-  const data = await response.json();
-  setActivities(data);
-
-}
-catch(err){
-   setError(err.message);
-}
-  };
-
-
-//FOR THE UPDATE ANOTHER COMPONENT?
+//UPDATE 
 
 
 //DELETE
@@ -99,7 +67,7 @@ catch(err){
 </div>
 
 
-  <SearchForm submitCb={(keyword)=>getActivities(keyword)} />
+  <SearchForm submitCb={({age, keyword}) => getActivities({age, keyword})} />
 
       {/* {CATALOGUE} */}
       <div className="container">
