@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 
 
 function SearchForm(props) {
-const [error, setError] = useState("");
+
 const [keyword, setKeyword] = useState("");
 const [age, setAge] = useState("");
-const [activities, setActivities] = useState([]);
+
 
 //FILTER SEARCH by keyword
 const handleKeyword = (event) =>{
@@ -53,7 +53,7 @@ return (
 
      </form>
      </div>
-    <div>{error}</div>  
+   
     </div>
       
     )

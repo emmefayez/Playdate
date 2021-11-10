@@ -63,7 +63,7 @@ catch(err){
              <p>{activity.description}</p>
              </div>
              
-             <button className="btn btn-primary m-2">Add to favorities</button>
+             <button className="btn btn-primary m-2"sentInput={()=> setActivities(activity.id)}>Add to favorities</button>
              </li>
            </div>
          </div>

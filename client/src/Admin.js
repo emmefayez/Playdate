@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import AddForm from './AddForm';
 import './App.css';
 import SearchForm from './SearchForm';
-
+import { Link } from "react-router-dom"; 
 
 
 function Admin() {
@@ -89,6 +89,7 @@ catch(err){
 
   return (
 <div className="App">
+  <button className="btn btn-outline-danger m-2"><Link to="/">Back to Homepage</Link></button>
   <div className="container">
     <div className="row mb-4">
       <div className ="col-6">
