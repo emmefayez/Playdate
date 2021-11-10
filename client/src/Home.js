@@ -1,21 +1,27 @@
 import { Link } from "react-router-dom"; 
 import React, {useState, useEffect} from 'react';
+import SearchForm from "./SearchForm";
 
 
 function Home() {
 const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
-const [keyword, setKeyword] = useState("");
-const [age, setAge] = useState("");
+
 
 useEffect(() => {
     getActivities();
   }, []);
 
 //render list of activities
-const getActivities = async () =>{
+const getActivities = async (keyword = '') =>{
+  //declare base url
+  //if keyword append that on the end of url
+let url = '/activities'
+if(keyword){
+  url += `/${keyword}`
+ }
 try{
-  const response = await fetch('/activities');
+  const response = await fetch(url);
   const data = await response.json();
   setActivities(data);
 
@@ -25,46 +31,6 @@ catch(err){
 }
   };
 
-//FILTER SEARCH by keyword
-const handleKeyword = (event) =>{
-  event.preventDefault();   
-  const keyword = event.target.value;
-  setKeyword(keyword)
-  
-}
-
-
-const getActivitiesByKeyword = async () =>{
-try{  
-  const response = await fetch(`/activities/${keyword}`);
-  const data = await response.json();
-  setActivities(data);
-}
-catch(err){
-   setError(err.message);
-}
-  };
-
-//FILTER SEARCH by age
-const handleAge= (event) =>{
-  event.preventDefault();
-  const age = event.target.value;
-  setAge(age)
-
-  
-}
-
-const getActivitiesByAge = async () =>{
-try{
-  const response = await fetch(`/activities/${age}`);
-  const data = await response.json();
-  setActivities(data);
-
-}
-catch(err){
-   setError(err.message);
-}
-  };
   return (
     <div className="Home">
        <nav>
@@ -76,23 +42,8 @@ catch(err){
   </button>
       </nav>
       
- <div className="container">
-             <div id="search_activity" className="container">
-     <form>
-      <label>Search for keyword</label>
-     <input className="form-control mb-4" type="text" placeholder="ball, chalks, montessori" name="keyword" value={keyword} onChange={(e) => handleKeyword(e)}/>
-     <button aria-label="Search_button" type="button" className="btn btn-outline-warning" onClick={getActivitiesByKeyword}>Search by Keyword</button>
-     <div id="searchAge">
-       <hr/>
-<label>Search by Age</label>
-<div className="slidecontainer"aria-labelledby="age_slider">
-  <label aria-label="minimum_age">From 1 to 10</label>
-  <input type="number" min="1" max="10" value={age} name="age" onChange={(e) => handleAge(e)} />
-  <button aria-label="Search_button" type="button" className="btn btn-outline-warning m-2" onClick={getActivitiesByAge}>Search by Age</button>
-</div>
-</div>
-</form>
-       </div>     
+ <div className="search">
+             <SearchForm submitCb={(keyword)=>getActivities(keyword)}/>    
         </div>
 
   <div className="container">

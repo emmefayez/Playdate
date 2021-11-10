@@ -90,19 +90,16 @@ catch(err){
 
 
   return (
-    <div className="App">
-     
-<div className="container">
-  <div className="row mb-4">
-
-   <div className ="col-6">
+<div className="App">
+  <div className="container">
+    <div className="row mb-4">
+      <div className ="col-6">
 <AddForm onDone={newActivity => setActivities(newActivity)} /> 
-</div>
-</div>
+    </div>
+      </div>
 </div>
 
-{/* {SEARCH FORM}
-     do I need another useEffect and hook to render just the filtered results? so it has to be triggered no on reload but when the form is submitted?*/}
+
      <div id="search_activity" className="container">
      <form>
       <label>Search for keyword</label>

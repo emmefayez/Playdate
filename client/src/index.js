@@ -2,20 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import './index.css';
-import Home from './Home';
-import { Routes, Route, Link } from "react-router-dom"; 
-import Admin from  "./Admin";
-import User from "./User";
+import App from './App';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-    <Route path="/" element={<Home />}/> 
-    <Route path="users" element={<User />}/>      
-    <Route path="admin" element={<Admin />}/> 
-    </Routes>
+    <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
