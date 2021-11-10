@@ -7,7 +7,8 @@ function User(props) {
 
 const [favActivities, setFavActivities] = useState([]);
 
-//fetch of just the fav activities
+//fetch of just the fav activities 
+//using the props id
 
 
 return (
