@@ -45,6 +45,7 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
 
     return (
         <div className="container">
+   
   <form className="form-control" onSubmit={handleSubmit}>
     <div className="mb-4">
     <label>Name</label>
@@ -52,7 +53,7 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
     </div>
     <div className="mb-4">
     <label>Age</label>
-    <input value={age_range} type="text" onChange={(e) => handleInputsChange(e)} />
+    <input value={age_range} type="number" onChange={(e) => handleInputsChange(e)} />
   <select name="type_of_activity">
       <option name="outdoor" value={outdoor} onChange={(e) => handleInputsChange(e)}>Outdoor</option>
        <option name="indoor" value={indoor} onChange={(e) => handleInputsChange(e)}>Indoor</option>
@@ -62,7 +63,7 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
       <label>Description</label>
     <textarea value={description} name="description" onChange={(e) => handleInputsChange(e)}></textarea>
     </div>
-    <button type="submit" className="btn btn-primary" >Add activity</button>
+    <button type="submit" className="btn btn-primary" >Add to catalogue</button>
   </form>
 <div>{error}</div>
 </div>

@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import AddForm from './AddForm';
 import './App.css';
+import Home from './Home';
 
 
 function App() {
 
 const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
+const [keyword, setKeyword] = useState("");
+const [age, setAge] = useState("");
 
 useEffect(() => {
     getActivities();
@@ -16,9 +19,7 @@ useEffect(() => {
 const getActivities = async () =>{
 try{
   const response = await fetch('/activities');
-  console.log(response)
   const data = await response.json();
-  console.log("DATA",data)
   setActivities(data);
 
 }
@@ -27,7 +28,46 @@ catch(err){
 }
   };
 
+//FILTER SEARCH by keyword
+const handleKeyword = (event) =>{
+  event.preventDefault();   
+  const keyword = event.target.value;
+  setKeyword(keyword)
+  
+}
 
+
+const getActivitiesByKeyword = async () =>{
+try{  
+  const response = await fetch(`/activities/${keyword}`);
+  const data = await response.json();
+  setActivities(data);
+}
+catch(err){
+   setError(err.message);
+}
+  };
+
+//FILTER SEARCH by age
+const handleAge= (event) =>{
+  event.preventDefault();
+  const age = event.target.value;
+  setAge(age)
+
+  
+}
+
+const getActivitiesByAge = async () =>{
+try{
+  const response = await fetch(`/activities/${age}`);
+  const data = await response.json();
+  setActivities(data);
+
+}
+catch(err){
+   setError(err.message);
+}
+  };
 
 
 //FOR THE UPDATE ANOTHER COMPONENT?
@@ -59,8 +99,34 @@ catch(err){
     User
   </button>
       </nav>
+<div className="container">
+  <div className="row mb-4">
+   <button aria-label="add_button" type="button" className="btn btn-outline-primary"> Add activity </button>
+   <div className ="col-6">
+<AddForm onDone={newActivity => setActivities(newActivity)} /> 
+</div>
+</div>
+</div>
 
-<AddForm onDone={newActivity => setActivities(newActivity)} />
+{/* {SEARCH FORM}
+     do I need another useEffect and hook to render just the filtered results? so it has to be triggered no on reload but when the form is submitted?*/}
+     <div id="search_activity" className="container">
+     <form>
+      <label>Search for keyword</label>
+     <input className="form-control" type="text" placeholder="ball, chalks, montessori" name="keyword" value={keyword} onChange={(e) => handleKeyword(e)}/>
+     <button aria-label="Search_button" type="button" className="btn btn-outline-warning" onClick={getActivitiesByKeyword}>Search by Keyword</button>
+     <div id="searchAge">
+       <hr/>
+<label>Search by Age</label>
+<div className="slidecontainer"aria-labelledby="age_slider">
+  <label aria-label="minimum_age">From 1 to 10</label>
+  <input type="number" min="1" max="10" value={age} name="age" onChange={(e) => handleAge(e)} />
+  <button aria-label="Search_button" type="button" className="btn btn-outline-warning" onClick={getActivitiesByAge}>Search by Age</button>
+</div>
+</div>
+
+     </form>
+     </div>
 
       {/* {CATALOGUE} */}
       <div className="container">
@@ -75,13 +141,13 @@ catch(err){
              Title: {activity.name}
              </div>
              <div className="card-text">
-             <span className="mb-4">From children up to: {activity.age_range} y.o</span>
+             <span className="mb-4">From children of: {activity.age_range} y.o</span>
              <span>This is an {activity.outdoor === 1 ? 'outdoor' : 'indoor'} activity</span>
              <p>{activity.description}</p>
              </div>
              
-             <button className="btn btn-primary">Update activity</button>
-             <button className="btn btn-danger" onClick={()=> deleteActivity(activity.id)}>Delete activity</button>
+             <button className="btn btn-primary m-2">Update activity</button>
+             <button className="btn btn-danger m-2" onClick={()=> deleteActivity(activity.id)}>Delete activity</button>
              </li>
            </div>
          </div>
@@ -89,35 +155,7 @@ catch(err){
      </div>
      <div id="errorMsg">{error}</div>
      
-     {/* {SEARCH} */}
-     <div id="search_activity" className="container">
-     <form>
-      <label>Search for keyword</label>
-     <input className="form-control" type="text" placeholder="ball, chalks, montessori"/>
-     <div id="filters">
-       <div className="form-check">
-  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-  <label className="form-check-label" htmlFor="flexRadioDefault1">
-    Outdoor
-  </label>
-</div>
-<div className="form-check">
-  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-  <label className="form-check-label" htmlFor="flexRadioDefault2">
-    Indoor
-  </label>
-</div>
-<label id="age_slider">Age</label>
-<div className="slidecontainer"aria-labelledby="age_slider">
-  <label aria-label="minimum_age">1</label>
-  <input type="range" min="1" max="10"  className="slider" id="myRange" />
-  <label aria-label="maximum_age">10</label>
-</div>
-
-     </div>
-     <button aria-label="Search_button" type="button" className="btn btn-outline-warning">Search</button>
-     </form>
-     </div>
+     
      </div>
      
     </div>
