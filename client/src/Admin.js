@@ -4,7 +4,7 @@ import './App.css';
 import Home from './Home';
 
 
-function App() {
+function Admin() {
 
 const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
@@ -91,14 +91,7 @@ catch(err){
 
   return (
     <div className="App">
-      <nav>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    Admin
-  </button>
-    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    User
-  </button>
-      </nav>
+     
 <div className="container">
   <div className="row mb-4">
 
@@ -162,4 +155,4 @@ catch(err){
   );
 }
 
-export default App;
+export default Admin;

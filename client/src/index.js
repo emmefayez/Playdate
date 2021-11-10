@@ -3,12 +3,23 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import Home from './Home';
+import { Routes, Route, Link } from "react-router-dom"; 
+import Admin from  "./Admin";
+import User from "./User";
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Home/>
+    <Routes>
+    <Route path="/" element={<Home />}/>
+     
+    <Route path="user" element={<User />}/>
+            
+    <Route path="admin" element={<Admin />}/> 
+      
+    
+    </Routes>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

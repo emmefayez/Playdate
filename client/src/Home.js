@@ -1,15 +1,18 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom"; 
-import App from  "./App"
+
 
 function Home() {
   return (
     <div className="Home">
-      <h1>Welcome to React Router!</h1>
-      <Routes>
-        <Route path="/" element={<App />} />
-        {/* <Route path="about" element={<About />} /> */}
-      </Routes>
+       <nav>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    Admin
+  </button>
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    User
+  </button>
+      </nav>
+     
     </div>
   );
 }
