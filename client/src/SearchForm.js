@@ -19,16 +19,7 @@ const handleSubmit = (event) => {
     props.submitCb(keyword);
 
  }
-// const getActivitiesByKeyword = async () =>{
-// try{  
-//   const response = await fetch(`/activities/${keyword}`);
-//   const data = await response.json();
-//   setActivities(data);//this now should be sent via props
-// }
-// catch(err){
-//    setError(err.message);
-// }
-//   };
+
 
 //FILTER SEARCH by age
 const handleAge= (event) =>{
@@ -39,17 +30,7 @@ const handleAge= (event) =>{
   
 }
 
-// const getActivitiesByAge = async () =>{
-// try{
-//   const response = await fetch(`/activities/${age}`);
-//   const data = await response.json();
-//   setActivities(data);//this now should be sent via props
 
-// }
-// catch(err){
-//    setError(err.message);
-// }
-//   };
 
 
 return (
