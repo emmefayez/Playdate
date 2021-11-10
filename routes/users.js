@@ -4,7 +4,7 @@ const db = require("../model/helper");
 
 
 //Get list of users 
-router.get('/users', async function(req, res, next){
+router.get('/', async function(req, res, next){
   try{
     const results = await db("SELECT * FROM users ORDER BY id ASC;");
     res.send(results.data);
@@ -15,15 +15,19 @@ router.get('/users', async function(req, res, next){
 })
 
 //CREATE USER
-router.post('/users', async function(req, res, next) {
+router.post('/', async function(req, res, next) {
+  const { name } = req.body;
  
-  const {name} = req.body;
+  const query = `INSERT INTO users (name) VALUES ('${name}');`
 
   try{
-    await db(`INSERT INTO users (name) VALUES ('${name}');`)
-    res.status(201).send({message: "user created!"});
+    const user = await db(query)
+    res.status(201).send({message: "user created"});
+    
   }
   catch(err){
        res.status(500).send(err);
   }
 });
+
+module.exports = router;
