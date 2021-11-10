@@ -101,7 +101,7 @@ catch(err){
       </nav>
 <div className="container">
   <div className="row mb-4">
-   <button aria-label="add_button" type="button" className="btn btn-outline-primary"> Add activity </button>
+
    <div className ="col-6">
 <AddForm onDone={newActivity => setActivities(newActivity)} /> 
 </div>

@@ -13,7 +13,31 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-//FILTER
+//FILTER by keyword
+router.get('/:keyword', async function(req, res, next) {
+  const {keyword} = req.params
+  const query = `SELECT * FROM activities WHERE description LIKE '%${keyword}%';`
+  try{
+    const filter = await db(query);
+    res.send(filter.data);
+
+  }
+  catch(err){
+       res.status(500).send(err);
+  }
+});
+
+//FILTER by age 
+router.get('/:age', async function(req, res, next) {  
+   const {age} = req.params;
+  try{
+    const results = await db(`SELECT * FROM activities WHERE age_range LIKE '%${age}%';`);
+    res.send(results.data);
+  }
+  catch(err){
+       res.status(500).send(err);
+  }
+});
 
 //POST new activity 
 router.post('/', async function(req, res, next) {
