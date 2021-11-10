@@ -37,17 +37,17 @@ con.connect(function(err) {
   });
 
 
-  let favActivities =
-    `CREATE TABLE favorities_activities (
+  let favorities =
+    `CREATE TABLE favorities (
 	id INT NOT NULL AUTO_INCREMENT,
 	activity_id INT NOT NULL,
 	user_id INT NOT NULL,
 	PRIMARY KEY (id)
 );
 `
-  con.query(favActivities, function(err, result) {
+  con.query(favorities, function(err, result) {
     if (err) throw err;
-    console.log("Table creation `favorities_activities` was successful!");
+    console.log("Table creation `favorities` was successful!");
 
     console.log("Closing...");
   });
