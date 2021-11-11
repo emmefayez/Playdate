@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import AddForm from './AddForm';
 import './App.css';
 import SearchForm from './SearchForm';
-import { Link } from "react-router-dom"; 
+import Navbar from './Navbar';
 
 
 function Admin() {
@@ -57,17 +57,12 @@ catch(err){
 
 
   return (
-<div className="App">
-  <nav>
-     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <Link to="/Activities">Activities catalogue</Link></button>
-   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <Link to="/">Home</Link>
-  </button>
-  </nav>
-  <div className="container">
+    
+<div className="container">
+  <Navbar />
+  <div className="container mt-4">
     <div className="row mb-4">
-      <div className ="col-6">
+      <div className ="col">
 <AddForm onDone={newActivity => setActivities(newActivity)} /> 
     </div>
       </div>

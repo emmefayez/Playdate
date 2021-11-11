@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom"; 
 import AddForm from './AddForm';
+import Navbar from './Navbar';
 
 
 
@@ -31,10 +32,8 @@ catch(err){
 
 
 return (
-    <div className="container">
-      <nav>
-      <button className="btn btn-outline-danger m-2"><Link to="/Activities">Back to Activities catalogue</Link></button>
-      </nav>
+    <div className="container mt-4">
+     <Navbar />
 
         <div className="user-info">
           <h3>Your favorities activities:</h3>

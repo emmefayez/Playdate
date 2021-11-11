@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"; 
 import React, {useState, useEffect} from 'react';
 import SearchForm from "./SearchForm";
+import Navbar from "./Navbar";
 
 
 function Activities() {
@@ -38,18 +39,8 @@ catch(err){
   };
 
   return (
-    <div className="Home">
-       <nav>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <Link to="/Admin">Admin</Link>
-  </button>
-    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <Link to="/users">User</Link>
-  </button>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <Link to="/">Home</Link>
-  </button>
-      </nav>
+    <div className="container mt-4">
+     <Navbar />
       
  <div className="search">
              <SearchForm submitCb={(query) => getActivities(query)}/>    

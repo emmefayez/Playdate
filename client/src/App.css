@@ -1,5 +1,4 @@
 body{
-    background-color:#B2EA70;
     
 }
 
@@ -20,10 +19,15 @@ h5{
 
 h3{
 font-size: 20px;
-color: white;
+color: #B2EA70;
 }
 
-section{
+p{
+font-size: 20px;
+color: #B2EA70;
+}
+
+/* section{
 border-style: dotted;
 border-color: #C85C5C;
-}
+} */
