@@ -2,33 +2,13 @@ import React, {useState} from 'react';
 
 
 function SearchForm(props) {
-
-// const [keyword, setKeyword] = useState("");
-// const [age, setAge] = useState("");
 const [query, setQuery] = useState("");
-
-// //FILTER SEARCH by keyword
-// const handleKeyword = (event) =>{
-//   event.preventDefault();   
-//   const keyword = event.target.value;
-//   setKeyword(keyword)
-  
-// }
-//FILTER SEARCH by age
-// const handleAge= (event) =>{
-//   event.preventDefault();
-//   const age = event.target.value;
-//   setAge(age) 
-// }
 
 const handleQuery = (event) =>{
   event.preventDefault();
-  //  const {query} = event.target;
-  // setQuery((state) => ({...state, query}))
   const query = event.target.value;
   setQuery(query);
 }
-
 
 const handleSubmit = (event) => {
     event.preventDefault();

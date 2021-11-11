@@ -37,7 +37,7 @@ return (
 
         <div className="user-info">
           <h3>Your favorities activities:</h3>
-         {favActivities.map(activity => (  <div key={activity.id} className="card-body">
+         {favActivities.map(activity => (<div key={activity.id} className="card-body">
            <div >
              <li className="list-group-item">
                <div className="card-title">

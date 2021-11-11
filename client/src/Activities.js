@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"; 
 import React, {useState, useEffect} from 'react';
 import SearchForm from "./SearchForm";
 import Navbar from "./Navbar";
@@ -13,23 +12,17 @@ useEffect(() => {
     getActivities();
   }, []);
 
-//render list of activities
-
 const getActivities = async (query) =>{
+
 let url = '/activities';
-// const {keyword, age} = query;
-// if(keyword){
-//   url += `/?=${keyword}`
-//  }
-// if(age){
-//   url += `/?=${age}`
-//  }
+
 if(query){
-  url += `/?=${query}`
+  url += `?query=${query}`
  }
 try{
   const response = await fetch(url);
   const data = await response.json();
+ 
   setActivities(data);
 
 }
@@ -37,7 +30,6 @@ catch(err){
    setError(err.message);
 }
   };
-
   return (
     <div className="container mt-4">
      <Navbar />

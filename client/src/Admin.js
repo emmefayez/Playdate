@@ -17,20 +17,25 @@ useEffect(() => {
 
 //render list of activities
 const getActivities = async (query) =>{
+
 let url = '/activities';
-// const {keyword, age} = query;
+  // const {keyword, age} = query;
 // if(keyword){
 //   url += `/?=${keyword}`
 //  }
 // if(age){
 //   url += `/?=${age}`
 //  }
+
 if(query){
-  url += `/?=${query}`
- }
+
+  url += `?query=${query}`
+ }  
 try{
+  console.log("final url: ",url);
   const response = await fetch(url);
   const data = await response.json();
+  
   setActivities(data);
 
 }
@@ -38,6 +43,7 @@ catch(err){
    setError(err.message);
 }
   };
+
 
 
 //DELETE

@@ -3,23 +3,26 @@ var router = express.Router();
 const db = require("../model/helper");
 
 /* GET home page. */ 
-router.get('/', async function(req, res, next) {
+// router.get('/', async function(req, res, next) {
 
-  try{
-    const results = await db("SELECT * FROM activities ORDER BY id ASC;");
-    res.send(results.data);
-  }
-  catch(err){
-       res.status(500).send(err);
-  }
-});
+//   try{
+//     const results = await db("SELECT * FROM activities ORDER BY id ASC;");
+//     res.send(results.data);
+//   }
+//   catch(err){
+//        res.status(500).send(err);
+//   }
+// });
 
 //FILTER search
 router.get('/', async function(req, res, next) {
+    
   const {query} = req.query;
+ 
   if(query){
   try{
     const filter = await db(`SELECT * FROM activities WHERE description LIKE '%${query}%';`);
+      
     res.send(filter.data);
 
   }
