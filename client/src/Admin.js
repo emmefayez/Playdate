@@ -16,13 +16,17 @@ useEffect(() => {
   }, []);
 
 //render list of activities
-const getActivities = async (keyword = '', age) =>{
-let url = '/activities'
-if(keyword){
-  url += `/${keyword}`
- }
-if(age){
-  url += `/${age}`
+const getActivities = async (query) =>{
+let url = '/activities';
+// const {keyword, age} = query;
+// if(keyword){
+//   url += `/?=${keyword}`
+//  }
+// if(age){
+//   url += `/?=${age}`
+//  }
+if(query){
+  url += `/?=${query}`
  }
 try{
   const response = await fetch(url);
@@ -70,7 +74,7 @@ catch(err){
 </div>
 
 
-  <SearchForm submitCb={({age, keyword}) => getActivities({age, keyword})} />
+  <SearchForm submitCb={(query) => getActivities(query)} />
 
       {/* {CATALOGUE} */}
       <div className="container">

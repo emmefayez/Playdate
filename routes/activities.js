@@ -4,6 +4,7 @@ const db = require("../model/helper");
 
 /* GET home page. */ 
 router.get('/', async function(req, res, next) {
+
   try{
     const results = await db("SELECT * FROM activities ORDER BY id ASC;");
     res.send(results.data);
@@ -13,31 +14,39 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-//FILTER by keyword
-router.get('/:keyword', async function(req, res, next) {
-  const {keyword} = req.params
-  const query = `SELECT * FROM activities WHERE description LIKE '%${keyword}%';`
+//FILTER search
+router.get('/', async function(req, res, next) {
+  const {query} = req.query;
+  if(query){
   try{
-    const filter = await db(query);
+    const filter = await db(`SELECT * FROM activities WHERE description LIKE '%${query}%';`);
     res.send(filter.data);
 
   }
   catch(err){
        res.status(500).send(err);
-  }
-});
-
-//FILTER by age 
-router.get('/:age', async function(req, res, next) {  
-   const {age} = req.params;
+  }}
+  else{
   try{
-    const results = await db(`SELECT * FROM activities WHERE age LIKE '%${age}%';`);
+    const results = await db("SELECT * FROM activities ORDER BY id ASC;");
     res.send(results.data);
   }
   catch(err){
        res.status(500).send(err);
-  }
+  }}
 });
+
+// //FILTER by age 
+// router.get('/:age', async function(req, res, next) {  
+//    const {age} = req.params;
+//   try{
+//     const results = await db(`SELECT * FROM activities WHERE age LIKE '%${age}%';`);
+//     res.send(results.data);
+//   }
+//   catch(err){
+//        res.status(500).send(err);
+//   }
+// });
 
 //POST new activity 
 router.post('/', async function(req, res, next) {

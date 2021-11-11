@@ -13,16 +13,19 @@ useEffect(() => {
   }, []);
 
 //render list of activities
-const getActivities = async (keyword ="", age) =>{
-  //declare base url
-  //if keyword append that on the end of url
-let url = '/activities'
-if(keyword){
-  url += `/${keyword}`
+
+const getActivities = async (query) =>{
+let url = '/activities';
+// const {keyword, age} = query;
+// if(keyword){
+//   url += `/?=${keyword}`
+//  }
+// if(age){
+//   url += `/?=${age}`
+//  }
+if(query){
+  url += `/?=${query}`
  }
-if(age){
-  url += `/${age}`
-}
 try{
   const response = await fetch(url);
   const data = await response.json();
@@ -49,7 +52,7 @@ catch(err){
       </nav>
       
  <div className="search">
-             <SearchForm submitCb={({age, keyword}) => getActivities({age, keyword})}/>    
+             <SearchForm submitCb={(query) => getActivities(query)}/>    
         </div>
 
   <div className="container">

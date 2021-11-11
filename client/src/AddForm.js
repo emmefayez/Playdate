@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 
 
 function AddForm(props) {   
-const [newActivity, setNewActivity] = useState({name:"", age: 1, description:"" });
+const [newActivity, setNewActivity] = useState({name: "", age: 1, description: ""});
 
 const [error, setError] = useState("");
 
@@ -57,7 +57,7 @@ const { name, age, description } = newActivity;
     </div>
     <div className="mb-4">
     <label><h5>Suitable from children up to:</h5></label>
-    <input className= "m-4" value={age} type="number" name="age" min="1" max="10" onChange={(e) => handleInputsChange(e)} />
+    <input className= "m-4" value={+age} type="number" name="age" min="1" max="10" onChange={(e) => handleInputsChange(e)} />
     </div>
     <div>
       <label><h5>Description</h5> </label>
