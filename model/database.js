@@ -22,9 +22,7 @@ con.connect(function(err) {
     `CREATE TABLE activities (
 	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255),
-	age_range INT,
-	indoor BOOLEAN ,
-	outdoor BOOLEAN,
+	age INT,
 	description TEXT,
 	PRIMARY KEY (id)
 );

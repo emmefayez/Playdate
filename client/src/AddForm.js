@@ -3,12 +3,14 @@ import React, {useState, useEffect} from 'react';
 
 
 function AddForm(props) {   
-const [newActivity, setNewActivity] = useState({name:"", age_range: 1, indoor: 1, outdoor: 0, description:"" });
+const [newActivity, setNewActivity] = useState({name:"", age: 1, description:"" });
+
 const [error, setError] = useState("");
 
 const handleInputsChange = (event) =>{
   const {value, name} = event.target;
   setNewActivity((state) => ({...state, [name]: value}))
+  
 };
 
 //handle inputs
@@ -17,7 +19,7 @@ const handleSubmit = (e) =>{
   addActivity();
 };
 
-const { name, age_range, indoor, outdoor, description } = newActivity;
+const { name, age, description } = newActivity;
 
 //ADD 
  const addActivity = async () => {
@@ -53,11 +55,7 @@ const { name, age_range, indoor, outdoor, description } = newActivity;
     </div>
     <div className="mb-4">
     <label>Age</label>
-    <input className= "m-4" value={age_range} type="number" name="age_range" min="1" max="10" onChange={(e) => handleInputsChange(e)} />
-  <select name="type_of_activity">
-      <option name="outdoor" value={outdoor} onChange={(e) => handleInputsChange(e)} >Outdoor</option>
-       <option name="indoor" value={indoor} onChange={(e) => handleInputsChange(e)}>Indoor</option>
-      </select> 
+    <input className= "m-4" value={age} type="number" name="age" min="1" max="10" onChange={(e) => handleInputsChange(e)} />
     </div>
     <div>
       <label>Description</label>

@@ -31,7 +31,7 @@ router.get('/:keyword', async function(req, res, next) {
 router.get('/:age', async function(req, res, next) {  
    const {age} = req.params;
   try{
-    const results = await db(`SELECT * FROM activities WHERE age_range LIKE '%${age}%';`);
+    const results = await db(`SELECT * FROM activities WHERE age LIKE '%${age}%';`);
     res.send(results.data);
   }
   catch(err){
@@ -42,10 +42,10 @@ router.get('/:age', async function(req, res, next) {
 //POST new activity 
 router.post('/', async function(req, res, next) {
  
-  const {name, age_range, indoor, outdoor, description} = req.body;
+  const {name, age, description} = req.body;
 
   try{
-    await db(`INSERT INTO activities (name, age_range, indoor, outdoor, description) VALUES ('${name}', '${age_range}', '${indoor}', '${outdoor}', '${description}');`)
+    await db(`INSERT INTO activities (name, age, description) VALUES ('${name}', '${age}', '${description}');`)
     const results = await db("SELECT * FROM activities ORDER BY id ASC;");
     res.status(201).send(results.data);
   }
@@ -54,14 +54,14 @@ router.post('/', async function(req, res, next) {
   }
 });
 
-//UPDATE an acitivity 
+//UPDATE an acitivity - I dont have time, for  whom is gonna take this, enjoy.
 router.put('/:id', async function(req, res, next) {
   const { id } = req.params;
-  const {name, age_range, indoor, outdoor, description} = req.body;
+  const {name, age, description} = req.body;
  
   try{
-    //const res = await db(`UPDATE activities  SET name = 'activity1', age_range = 5 , indoor= 0, outdoor= 1, description='exampl22e' WHERE id=4`);
-    await db(`UPDATE activities  SET name='${name}', age_range =${age_range} , indoor=${indoor}, outdoor=${outdoor}, description='${description}' WHERE id=${Number(id)}`);
+    
+    await db(`UPDATE activities  SET name='${name}', age =${age}, description='${description}' WHERE id=${Number(id)}`);
     res.status(200).send({message: "activity updated"});
   }
   catch(err){

@@ -36,9 +36,6 @@ catch(err){
   };
 
 
-//UPDATE 
-
-
 //DELETE
   const deleteActivity = async (id) =>{
 try{
@@ -82,12 +79,9 @@ catch(err){
              Title: {activity.name}
              </div>
              <div className="card-text">
-             <span className="mb-4">From children of: {activity.age_range} y.o</span>
-             <span>This is an {activity.outdoor === 1 ? 'outdoor' : 'indoor'} activity</span>
+             <span className="mb-4">From children of: {activity.age} y.o</span>
              <p>{activity.description}</p>
-             </div>
-             
-             <button className="btn btn-primary m-2">Update activity</button>
+             </div> 
              <button className="btn btn-danger m-2" onClick={()=> deleteActivity(activity.id)}>Delete activity</button>
              </li>
            </div>
