@@ -54,7 +54,13 @@ catch(err){
 
   return (
 <div className="App">
-  <button className="btn btn-outline-danger m-2"><Link to="/Activities">Back to Activities catalogue</Link></button>
+  <nav>
+     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <Link to="/Activities">Activities catalogue</Link></button>
+   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <Link to="/">Home</Link>
+  </button>
+  </nav>
   <div className="container">
     <div className="row mb-4">
       <div className ="col-6">
@@ -80,7 +86,7 @@ catch(err){
              </div>
              <div className="card-text">
              <span className="mb-4">From children of: {activity.age} y.o</span>
-             <p>{activity.description}</p>
+             <p>Description: {activity.description}</p>
              </div> 
              <button className="btn btn-danger m-2" onClick={()=> deleteActivity(activity.id)}>Delete activity</button>
              </li>

@@ -50,16 +50,19 @@ const { name, age, description } = newActivity;
    
   <form className="form-control" onSubmit={handleSubmit}>
     <div className="mb-4">
-    <label>Name</label>
-    <input className="m-4" value={name} name="name" type="text" onChange={(e) => handleInputsChange(e)}/>
+      <h2>Add new activity</h2>
+      <p>Don't leave any field empty </p>
+    <label><h5>Name</h5></label>
+    <input className="m-4" value={name} name="name" type="text" onChange={(e) => handleInputsChange(e)} minLength="5" />
     </div>
     <div className="mb-4">
-    <label>Age</label>
+    <label><h5>Suitable from children up to:</h5></label>
     <input className= "m-4" value={age} type="number" name="age" min="1" max="10" onChange={(e) => handleInputsChange(e)} />
     </div>
     <div>
-      <label>Description</label>
-    <textarea value={description} name="description" onChange={(e) => handleInputsChange(e)}></textarea>
+      <label><h5>Description</h5> </label>
+      <p>Provide a brief description of this activity, including <strong>materials</strong> you need to have, if it is an <strong>outdoor</strong> or <strong>indoor</strong> game, or any other relevant information.</p>
+    <textarea value={description} name="description" onChange={(e) => handleInputsChange(e)} rows="5" cols="65" autoFocus minLength="5"></textarea>
     </div>
     
     <button type="submit" className="btn btn-primary m-2" >Add to catalogue</button>

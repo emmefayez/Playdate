@@ -65,8 +65,7 @@ catch(err){
              </div>
              <div className="card-text">
              <span className="mb-4">From children of: {activity.age_range} y.o</span>
-             <span>This is an {activity.outdoor === 1 ? 'outdoor' : 'indoor'} activity</span>
-             <p>{activity.description}</p>
+             <p>Description: {activity.description}</p>
              </div>
              
              <button className="btn btn-primary m-2" addToFav={()=> setActivities(activity.id)} >Add to favorities</button>

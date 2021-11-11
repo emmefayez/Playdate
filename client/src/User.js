@@ -46,7 +46,7 @@ return (
              </div>
              <div className="card-text">
              <span className="mb-4">From children of: {activity.age} y.o</span>
-             <p>{activity.description}</p>
+             <p>Description: {activity.description}</p>
              </div>
              </li>
            </div>
