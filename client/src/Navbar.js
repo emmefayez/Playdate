@@ -8,9 +8,11 @@ function Navbar() {
     <div className="container mt-4">
     <h1>Playdate!</h1>
      <Link to="/">Home</Link>
+     <span className="m-3"><Link to="/Activities">Activities</Link></span>
+      <span className="m-3"><Link to="/Places">Places</Link></span>
      <div>
      <span className="m-3"><Link to="/Admin">Admin</Link></span>
-     <span className="m-3"><Link to="/users">User</Link></span>
+     <span className="m-3"><Link to="/users">My profile</Link></span>
      </div>
       </div>
      </nav>

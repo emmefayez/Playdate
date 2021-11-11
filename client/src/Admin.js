@@ -87,11 +87,11 @@ catch(err){
            <div >
              <li className="list-group-item">
                <div className="card-title">
-             Title: {activity.name}
+            <h5> Title: {activity.name} </h5>
              </div>
              <div className="card-text">
-             <span className="mb-4">From children of: {activity.age} y.o</span>
-             <p>Description: {activity.description}</p>
+             <span className="mb-4"><h5>From children of: {activity.age} y.o</h5></span>
+             <h5>Description:</h5> <p>{activity.description}</p>
              </div> 
              <button className="btn btn-danger m-2" onClick={()=> deleteActivity(activity.id)}>Delete activity</button>
              </li>

@@ -47,11 +47,11 @@ catch(err){
            <div >
              <li className="list-group-item">
                <div className="card-title">
-             Title: {activity.name}
+             <h5>Title: {activity.name}</h5>
              </div>
              <div className="card-text">
-             <span className="mb-4">From children of: {activity.age_range} y.o</span>
-             <p>Description: {activity.description}</p>
+             <span className="mb-4"><h5>From children of: {activity.age} y.o</h5></span>
+             <h5>Description:</h5> <p>{activity.description}</p>
              </div>
              
              <button className="btn btn-primary m-2" addToFav={()=> setActivities(activity.id)} >Add to favorities</button>

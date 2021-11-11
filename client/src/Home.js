@@ -10,30 +10,41 @@ export default function Home() {
         <div>
             <Navbar />
         <div className="container mt-4">
-            <div>
+            
             <section className="col-6">
-                <h3>Run out of ideas for entratain your kid?</h3>
-                <p> No panic!</p> <p> We have a list of suggestions for <strong>you</strong>!</p>
+                <h3>Run out of ideas to entratain your kid/s?</h3>
+                <p> No need to panic!</p> <p> We have a list of suggestions for <strong>you</strong>!</p>
             </section>
+
+            <div className="row mt-4">
+            <div className="col-6">
             <section className="card">
                 <div className="card-body">
                 <h2>Activities catalogue</h2>
                 <p>Browse through the catalogue to find the perfect game, you can filter by keyword (ex. sand, ball, draw) or by age.</p>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <Link to="/Activities">Bring me to the activities catalogue!</Link></button>
+                
+                <span>Take a look </span>
+                   <Link to="/Activities">here</Link>
                 <img src={img1} alt="activities_img" className="img-fluid"/>
                 </div>
             </section>
+            </div>
+            <div className="col-6">
               <section className="card">
                   <div className="card-body">
                 <h2>Places catalogue</h2>
-                <p>Looking for something to do visit with kids in Barcelona?</p>
-                <Link to="/Admin">Bring me to the places catoluge</Link>
+                <p>Looking for something to visit with kids in Barcelona?Here a list of playgrounds, kids clubs and parks!</p>
+                <span>Take a look </span>
+                <Link to="/Admin">here</Link>
                 <img src={img2} alt="activities_img" className="img-fluid"/>
+                <br/>
+                
             </div>
             </section>
+            </div>
             
-</div>
+           </div>
+
         </div>
         </div>
     )

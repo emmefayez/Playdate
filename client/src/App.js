@@ -4,6 +4,7 @@ import Home from './Home';
 import Activities from './Activities';
 import User from './User';
 import Admin from './Admin';
+import Places from './Places';
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
             <Routes>
     <Route path="/" element={<Home />}/> 
     <Route path="/Activities" element={<Activities />}/> 
+    <Route path="/Places" element={<Places />}/> 
     <Route path="users" element={<User />}/>      
     <Route path="admin" element={<Admin />}/> 
     </Routes>
