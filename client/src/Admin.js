@@ -57,7 +57,7 @@ catch(err){
 
   return (
 <div className="App">
-  <button className="btn btn-outline-danger m-2"><Link to="/">Back to Homepage</Link></button>
+  <button className="btn btn-outline-danger m-2"><Link to="/Activities">Back to Activities catalogue</Link></button>
   <div className="container">
     <div className="row mb-4">
       <div className ="col-6">

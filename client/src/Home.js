@@ -1,84 +1,26 @@
+import React from 'react';
 import { Link } from "react-router-dom"; 
-import React, {useState, useEffect} from 'react';
-import SearchForm from "./SearchForm";
 
 
-function Home() {
-const [activities, setActivities] = useState([]);
-const [error, setError] = useState("");
+export default function Home() {
+    return (
+        <div className="container m-4">
+            <h1>Playdate!</h1>
+            <section className="">
+                <p>Run out of ideas for entratain your kid? No panic! We have a list of suggestions for you! </p>
+            </section>
+            <section>
+                <h2>Activities catalogue</h2>
+                <p>Browse through the catalogue to find the perfect game, you can filter by keyword (ex. sand, ball, draw) or by age.</p>
+                <button className="btn btn-outline-warning"> <Link to="/Activities">Bring me to the activities catalogue!</Link></button>
+            </section>
+              <section className="">
+                <h2>Places catalogue</h2>
+                <p>Looking for something to do visit with kids in Barcelona?</p>
+                <button className="btn btn-outline-warning"><Link to="/Admin">Bring me to the places catoluge</Link></button>
+            </section>
+            
 
-
-useEffect(() => {
-    getActivities();
-  }, []);
-
-//render list of activities
-const getActivities = async (keyword ="", age) =>{
-  //declare base url
-  //if keyword append that on the end of url
-let url = '/activities'
-if(keyword){
-  url += `/${keyword}`
- }
-if(age){
-  url += `/${age}`
-}
-try{
-  const response = await fetch(url);
-  const data = await response.json();
-  setActivities(data);
-
-}
-catch(err){
-   setError(err.message);
-}
-  };
-
-  return (
-    <div className="Home">
-       <nav>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <Link to="/Admin">Admin</Link>
-  </button>
-    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <Link to="/users">User</Link>
-  </button>
-      </nav>
-      
- <div className="search">
-             <SearchForm submitCb={({age, keyword}) => getActivities({age, keyword})}/>    
         </div>
-
-  <div className="container">
-     <h1></h1>
-     <div id="activities_catalogue">
-       <h2>Activities</h2>
-       { activities.map((activity) => (
-         <div key={activity.id} className="card-body">
-           <div >
-             <li className="list-group-item">
-               <div className="card-title">
-             Title: {activity.name}
-             </div>
-             <div className="card-text">
-             <span className="mb-4">From children of: {activity.age_range} y.o</span>
-             <span>This is an {activity.outdoor === 1 ? 'outdoor' : 'indoor'} activity</span>
-             <p>{activity.description}</p>
-             </div>
-             
-             <button className="btn btn-primary m-2" addToFav={()=> setActivities(activity.id)} >Add to favorities</button>
-             </li>
-           </div>
-         </div>
-       ))}
-     </div>
-     <div id="errorMsg">{error}</div>
-     
-     
-     </div>
-      
-    </div>
-  );
+    )
 }
-
-export default Home;
