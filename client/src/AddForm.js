@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Noty from 'noty';
-import "../node_modules/noty/lib/themes/bootstrap-v4.css"; 
+import "../node_modules/noty/lib/themes/bootstrap-v4.css";
+import "../node_modules/noty/lib/themes/sunset.css"; 
 import "../node_modules/noty/lib/noty.css";  
 
 
@@ -44,9 +45,11 @@ const { name, age, description } = newActivity;
       setError(error.message);
     }
     new Noty({
-  layout: "bottom",
-  theme: "nest",
-  text : "Activity added!"
+  layout: "topRight",
+  type: "success",
+  theme: "sunset",
+  text : "Activity added!",
+  timeout: 2000
 }).show();
 
     setNewActivity(""); 

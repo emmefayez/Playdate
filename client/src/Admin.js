@@ -4,6 +4,8 @@ import './App.css';
 import SearchForm from './SearchForm';
 import Navbar from './Navbar';
 import Noty from 'noty';
+import "../node_modules/noty/lib/themes/sunset.css"; 
+import "../node_modules/noty/lib/noty.css"; 
 
 
 function Admin() {
@@ -47,13 +49,18 @@ try{
       }
     });
   const data = await response.json();
-
-
   getActivities(); 
 }
 catch(err){
    setError(err);
 }
+new Noty({
+  layout: "center",
+  type: "error",
+  theme: "sunset",
+  text : "Activity added!",
+  timeout: 2000
+}).show();
 
   };
 
