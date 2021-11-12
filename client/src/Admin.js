@@ -6,9 +6,10 @@ import Navbar from './Navbar';
 
 
 function Admin() {
-
 const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
+const[deleteConfirmMsg, setDeleteConfirmMsg] = useState("");
+
 
 
 useEffect(() => {
@@ -17,16 +18,7 @@ useEffect(() => {
 
 //render list of activities
 const getActivities = async (query) =>{
-
 let url = '/activities';
-  // const {keyword, age} = query;
-// if(keyword){
-//   url += `/?=${keyword}`
-//  }
-// if(age){
-//   url += `/?=${age}`
-//  }
-
 if(query){
 
   url += `?query=${query}`
@@ -37,7 +29,6 @@ try{
   const data = await response.json();
   
   setActivities(data);
-
 }
 catch(err){
    setError(err.message);
@@ -53,8 +44,12 @@ try{
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
-      }});
+      }
+    });
+  const data = await response.json();
+  setDeleteConfirmMsg(data.message);
   getActivities();
+  
 }
 catch(err){
    setError(err);
@@ -79,7 +74,7 @@ catch(err){
 
       {/* {CATALOGUE} */}
       <div className="container">
-     <h1></h1>
+   <h3>{deleteConfirmMsg}</h3>
      <div id="activities_catalogue">
        <h2>Activities</h2>
        { activities.map((activity) => (

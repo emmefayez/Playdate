@@ -4,8 +4,8 @@ import React, {useState, useEffect} from 'react';
 
 function AddForm(props) {   
 const [newActivity, setNewActivity] = useState({name: "", age: 1, description: ""});
-
 const [error, setError] = useState("");
+const [message, setMessage] = useState("");
 
 const handleInputsChange = (event) =>{
   const {value, name} = event.target;
@@ -23,7 +23,7 @@ const { name, age, description } = newActivity;
 
 //ADD 
  const addActivity = async () => {
-     console.log('about to try')
+     
     try {
         
       const response = await fetch("/activities", {
@@ -36,18 +36,20 @@ const { name, age, description } = newActivity;
       const activities = await response.json();
       
      props.onDone(activities); 
+      setMessage("Activity added!")
     } catch (error) {
       setError(error.message);
     }
 
 
     setNewActivity("");
+    
    
   };
 
     return (
         <div className="container">
-   
+   <div><h3>{message}</h3></div>
   <form className="form-control" onSubmit={handleSubmit}>
     <div className="mb-4">
       <h2>Add new activity</h2>

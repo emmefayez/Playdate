@@ -1,20 +1,9 @@
 var express = require('express');
 var router = express.Router();
+// const activityIdGuard = require("./guards/activityIdGuard");
 const db = require("../model/helper");
 
-/* GET home page. */ 
-// router.get('/', async function(req, res, next) {
-
-//   try{
-//     const results = await db("SELECT * FROM activities ORDER BY id ASC;");
-//     res.send(results.data);
-//   }
-//   catch(err){
-//        res.status(500).send(err);
-//   }
-// });
-
-//FILTER search
+//GET - main catalogue and filter search
 router.get('/', async function(req, res, next) {
     
   const {query} = req.query;
@@ -39,17 +28,6 @@ router.get('/', async function(req, res, next) {
   }}
 });
 
-// //FILTER by age 
-// router.get('/:age', async function(req, res, next) {  
-//    const {age} = req.params;
-//   try{
-//     const results = await db(`SELECT * FROM activities WHERE age LIKE '%${age}%';`);
-//     res.send(results.data);
-//   }
-//   catch(err){
-//        res.status(500).send(err);
-//   }
-// });
 
 //POST new activity 
 router.post('/', async function(req, res, next) {
@@ -60,6 +38,8 @@ router.post('/', async function(req, res, next) {
     await db(`INSERT INTO activities (name, age, description) VALUES ('${name}', '${age}', '${description}');`)
     const results = await db("SELECT * FROM activities ORDER BY id ASC;");
     res.status(201).send(results.data);
+    //  await db("SELECT * FROM activities ORDER BY id ASC;");
+    // res.send({message : "activity created!"});
   }
   catch(err){
        res.status(500).send(err);
@@ -84,7 +64,7 @@ router.put('/:id', async function(req, res, next) {
 
 //DELETE an activity by ID 
 
-router.delete('/:id', async function(req, res, next) {
+router.delete('/:id',  async function(req, res, next) {
   
   const { id } = req.params;
   

@@ -8,6 +8,7 @@ const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
 
 
+
 useEffect(() => {
     getActivities();
   }, []);
@@ -24,6 +25,8 @@ try{
   const data = await response.json();
  
   setActivities(data);
+ 
+ 
 
 }
 catch(err){
@@ -39,11 +42,12 @@ catch(err){
         </div>
 
   <div className="container">
-     <h1></h1>
+   
      <div id="activities_catalogue">
        <h2>Activities</h2>
        { activities.map((activity) => (
          <div key={activity.id} className="card-body">
+           
            <div >
              <li className="list-group-item">
                <div className="card-title">
