@@ -35,7 +35,7 @@ export default function Home() {
                 <h2>Places catalogue</h2>
                 <p>Looking for something to visit with kids in Barcelona?Here a list of playgrounds, kids clubs and parks!</p>
                 <span>Take a look </span>
-                <Link to="/Admin">here</Link>
+                <Link to="/Places">here</Link>
                 <img src={img2} alt="activities_img" className="img-fluid"/>
                 <br/>
                 

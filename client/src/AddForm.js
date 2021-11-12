@@ -1,4 +1,9 @@
 import React, {useState} from 'react';
+import Noty from 'noty';
+import "../node_modules/noty/lib/themes/bootstrap-v4.css"; 
+import "../node_modules/noty/lib/noty.css";  
+
+
 
 
 
@@ -35,10 +40,14 @@ const { name, age, description } = newActivity;
       const activities = await response.json();
       
      props.onDone(activities); 
-      setMessage("Activity added!")
     } catch (error) {
       setError(error.message);
     }
+    new Noty({
+  layout: "bottom",
+  theme: "nest",
+  text : "Activity added!"
+}).show();
 
     setNewActivity(""); 
   };
@@ -51,16 +60,16 @@ const { name, age, description } = newActivity;
       <h2>Add new activity</h2>
       <p>Don't leave any field empty </p>
     <label><h5>Name</h5></label>
-    <input className="m-4" value={name} name="name" type="text" onChange={(e) => handleInputsChange(e)} minLength="5" />
+    <input className="m-4" value={name} name="name" type="text" onChange={(e) => handleInputsChange(e)} minLength="5" required />
     </div>
     <div className="mb-4">
     <label><h5>Suitable from children up to:</h5></label>
-    <input className= "m-4" value={+age} type="number" name="age" min="1" max="10" onChange={(e) => handleInputsChange(e)} />
+    <input className= "m-4" value={+age} type="number" name="age" min="1" max="10" required onChange={(e) => handleInputsChange(e)} />
     </div>
     <div>
       <label><h5>Description</h5> </label>
       <p>Provide a brief description of this activity, including <strong>materials</strong> you need to have, if it is an <strong>outdoor</strong> or <strong>indoor</strong> game, or any other relevant information.</p>
-    <textarea value={description} name="description" onChange={(e) => handleInputsChange(e)} rows="5" cols="65" autoFocus minLength="5"></textarea>
+    <textarea value={description} name="description" required onChange={(e) => handleInputsChange(e)} rows="5" cols="65" autoFocus minLength="5"></textarea>
     </div>
     
     <button type="submit" className="btn btn-primary m-2" >Add to catalogue</button>

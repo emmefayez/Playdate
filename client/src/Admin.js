@@ -3,12 +3,14 @@ import AddForm from './AddForm';
 import './App.css';
 import SearchForm from './SearchForm';
 import Navbar from './Navbar';
+import Noty from 'noty';
 
 
 function Admin() {
 const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
 const[deleteConfirmMsg, setDeleteConfirmMsg] = useState("");
+
 
 
 
@@ -45,19 +47,20 @@ try{
       }
     });
   const data = await response.json();
-  setDeleteConfirmMsg(data.message);
+
+
   getActivities(); 
 }
 catch(err){
    setError(err);
 }
-// setDeleteConfirmMsg("")
+
   };
 
 
   return (
     
-<div className="container">
+<div>
   <Navbar />
   <div className="container mt-4">
     <div className="row mb-4">

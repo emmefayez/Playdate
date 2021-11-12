@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from "react-router-dom"; 
 import AddForm from './AddForm';
 import Navbar from './Navbar';
-
-
 
 
 function User(props) {
@@ -32,10 +29,11 @@ catch(err){
 
 
 return (
-    <div className="container mt-4">
+    <div>
      <Navbar />
-
-        <div className="user-info">
+     
+   
+        <div className="user-info mt-4">
           <h3>Your favorities activities:</h3>
          {favActivities.map(activity => (<div key={activity.id} className="card-body">
            <div >
@@ -52,13 +50,14 @@ return (
          </div>))}
         </div>
          
-        <div className="add an activity">
+        <div className="container mt-4">
           <p>Do you want to share an activity with us? Fill the form!</p>
           <AddForm onDone={newActivity => setActivities(newActivity)}/>
 
         </div>
   
     </div>
+    
       
     )
 }

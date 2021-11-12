@@ -32,10 +32,10 @@ catch(err){
 }
   };
   return (
-    <div className="container mt-4">
+    <div>
      <Navbar />
       
- <div className="search">
+ <div className="search mt-4">
              <SearchForm submitCb={(query) => getActivities(query)}/>    
         </div>
 

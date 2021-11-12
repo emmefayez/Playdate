@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
     return (
-<div className="position-relative">
-  <nav className="navbar navbar-expand-lg navbar-light bg-light"> 
+<div className="position-relative" id="navbar">
+  <nav className="navbar navbar-expand-lg"> 
     <div className="container mt-4">
     <h1>Playdate!</h1>
      <Link to="/">Home</Link>
