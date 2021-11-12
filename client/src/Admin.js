@@ -35,8 +35,6 @@ catch(err){
 }
   };
 
-
-
 //DELETE
   const deleteActivity = async (id) =>{
 try{
@@ -48,12 +46,12 @@ try{
     });
   const data = await response.json();
   setDeleteConfirmMsg(data.message);
-  getActivities();
-  
+  getActivities(); 
 }
 catch(err){
    setError(err);
 }
+// setDeleteConfirmMsg("")
   };
 
 

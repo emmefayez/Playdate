@@ -26,8 +26,6 @@ try{
  
   setActivities(data);
  
- 
-
 }
 catch(err){
    setError(err.message);
@@ -42,7 +40,6 @@ catch(err){
         </div>
 
   <div className="container">
-   
      <div id="activities_catalogue">
        <h2>Activities</h2>
        { activities.map((activity) => (

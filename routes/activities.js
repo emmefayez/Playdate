@@ -1,6 +1,6 @@
 var express = require('express');
+const activityIdGuard = require("../guards/activityIdGuard");
 var router = express.Router();
-// const activityIdGuard = require("./guards/activityIdGuard");
 const db = require("../model/helper");
 
 //GET - main catalogue and filter search
@@ -64,7 +64,7 @@ router.put('/:id', async function(req, res, next) {
 
 //DELETE an activity by ID 
 
-router.delete('/:id',  async function(req, res, next) {
+router.delete('/:id', activityIdGuard,  async function(req, res, next) {
   
   const { id } = req.params;
   

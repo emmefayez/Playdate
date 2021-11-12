@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 
 
@@ -22,8 +22,7 @@ const handleSubmit = (e) =>{
 const { name, age, description } = newActivity;
 
 //ADD 
- const addActivity = async () => {
-     
+ const addActivity = async () => {    
     try {
         
       const response = await fetch("/activities", {
@@ -41,10 +40,7 @@ const { name, age, description } = newActivity;
       setError(error.message);
     }
 
-
-    setNewActivity("");
-    
-   
+    setNewActivity(""); 
   };
 
     return (
