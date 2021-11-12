@@ -33,6 +33,17 @@ try{
   const data = await response.json();
   
   setActivities(data);
+  if(!data.length){new Noty({
+  layout: "center",
+  type: "error",
+  theme: "sunset",
+  text : "No activity found",
+  timeout: 2000
+}).show();
+
+ }
+  
+  
 }
 catch(err){
    setError(err.message);
@@ -58,7 +69,7 @@ new Noty({
   layout: "center",
   type: "error",
   theme: "sunset",
-  text : "Activity added!",
+  text : "Activity deleted!",
   timeout: 2000
 }).show();
 

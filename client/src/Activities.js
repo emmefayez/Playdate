@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import SearchForm from "./SearchForm";
 import Navbar from "./Navbar";
+import Noty from 'noty';
+import "../node_modules/noty/lib/themes/sunset.css"; 
+import "../node_modules/noty/lib/noty.css"; 
 
 
 function Activities() {
 const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
+
 
 
 
@@ -25,7 +29,15 @@ try{
   const data = await response.json();
  
   setActivities(data);
- 
+ if(!data.length){new Noty({
+  layout: "center",
+  type: "error",
+  theme: "sunset",
+  text : "No activity found",
+  timeout: 2000
+}).show();
+
+ }
 }
 catch(err){
    setError(err.message);
