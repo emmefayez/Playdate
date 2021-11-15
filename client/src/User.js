@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import AddForm from './AddForm';
 import Navbar from './Navbar';
+import avatar_1 from './avatar_1.png';
 
 
-
-function User(props) {
+function User() {
 //don't delete this because you are sending the activity to be displayed in the "Activities" component
 const [activities, setActivities] = useState([]);
-const [favActivities, setFavActivities] = useState([{name: "", age: 1, description: ""}]);
+const [favActivities, setFavActivities] = useState([]);
 const [error, setError] = useState("");
 //this will probably not being necessary with auth
 const [users, setUsers] = useState([{avatar: "", name: "", email:"", password:"", repeat_password:""}])
@@ -16,14 +16,14 @@ const [users, setUsers] = useState([{avatar: "", name: "", email:"", password:""
 //using the props id
 useEffect(() => {
     getUser();
-    getFavActivities();
+  
   }, []);
 
 //to display the profile of the user
-const getUser = async (id=6) =>{
+const getUser = async (id=1) =>{
 
 try{ 
-  const response = await fetch(`/users:${id}`);
+  const response = await fetch(`/users/${id}`);
   const data = await response.json();
   setUsers(data);
 }
@@ -35,18 +35,18 @@ catch(err){
 
 
 //THIS will be really work once auth will be incorporeted in the project, I inserted a fav activity manually rn
-const getFavActivities = async () =>{
+// const getFavActivities = async () =>{
 
-try{
-  const response = await fetch('/favorities');
-  const data = await response.json();
-  setFavActivities(data);
+// try{
+//   const response = await fetch('/favorities');
+//   const data = await response.json();
+//   setFavActivities(data);
 
-}
-catch(err){
-   setError(err.message);
-}
-  };
+// }
+// catch(err){
+//    setError(err.message);
+// }
+//   };
 
 
 return (
@@ -56,8 +56,8 @@ return (
         
             <div className="profile-card">
                     <h1>Profile Page</h1>
+                    <img src={avatar_1} alt="profile avatar" className="img-thumbnail"/>
                     {users && users.map( user => (<div key={user.id}>
-                       <img src={user.avatar} alt="profile avatar" className="img-thumbnail"/>
                    <h5> Welcome back, {user.name} !</h5>
                    <div className="profile-card"></div>
                   <div>Name: {user.name}</div>
@@ -86,6 +86,7 @@ return (
              </li>
            </div>
          </div>))}
+         {!favActivities.length ? `You have no favorities to your activity catalogue, go take a look!` : favActivities }
         </div>
          
         <div className="container mt-4">

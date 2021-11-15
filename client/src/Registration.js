@@ -3,6 +3,9 @@ import avatar_1 from './avatar_1.png';
 import avatar_2 from './avatar_2.png';
 import avatar_3 from './avatar_3.png';
 import Navbar from './Navbar';
+import Noty from 'noty';
+import "../node_modules/noty/lib/themes/sunset.css"; 
+import "../node_modules/noty/lib/noty.css"; 
 
 function Registration() {
 
@@ -37,6 +40,13 @@ register();
     } catch (error) {
       setError(error.message);
     }
+     new Noty({
+  layout: "center",
+  type: "alert",
+  theme: "sunset",
+  text : "Great! Welcome to Playdate!",
+  timeout: 4000
+}).show();
 }
 const {avatar_group, name, email, password, repeat_password} = user;
  

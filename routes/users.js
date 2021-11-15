@@ -18,12 +18,14 @@ router.get('/', async function(req, res, next){
 
 //GET a specific user - I am using this method to show an user in the User component (Myprofile page)
 //probably you will not need this once auth is incorporeted into the project
-router.get('/:id', async function(req, res, next){
+router.get('/:id', userIdGuard, async function(req, res, next){
   try{
-    const results = await db(`SELECT * FROM users WHERE id = "${id}";`);
+    const {id} = req.params
+    const results = await db(`SELECT * FROM users WHERE id="${id}";`);
     res.send(results.data);
   }
   catch(err){
+    console.log('am i here now?', err)
        res.status(500).send(err);
   }
 });

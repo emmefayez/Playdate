@@ -18,7 +18,7 @@ useEffect(() => {
     getActivities();
   }, []);
 
-//render list of activities
+//render list of activities - I didn't export the activity catalogue as a component because here only the delete button will show
 const getActivities = async (query) =>{
 let url = '/activities';
 if(query){

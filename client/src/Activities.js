@@ -10,13 +10,13 @@ function Activities() {
 const [activities, setActivities] = useState([]);
 const [error, setError] = useState("");
 
-
-
+//this is the parent of addForm and searchForm
 
 useEffect(() => {
     getActivities();
   }, []);
 
+//to display all the activities
 const getActivities = async (query) =>{
 
 let url = '/activities';
@@ -44,6 +44,7 @@ catch(err){
 }
   };
 
+//this function will probably change once the log in works, displaying the noty only when the user is not register
 const registerFirst = (event) =>{
   event.preventDefault();
   new Noty({

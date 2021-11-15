@@ -5,9 +5,6 @@ import "../node_modules/noty/lib/themes/sunset.css";
 import "../node_modules/noty/lib/noty.css";  
 
 
-
-
-
 function AddForm(props) {   
 const [newActivity, setNewActivity] = useState({name: "", age: 1, description: ""});
 const [error, setError] = useState("");

@@ -1,7 +1,24 @@
 import React from 'react';
 import Navbar from './Navbar';
+import Noty from 'noty';
+import "../node_modules/noty/lib/themes/sunset.css"; 
+import "../node_modules/noty/lib/noty.css"; 
 
 function Login() {
+
+//ofc until now everything is fake
+
+ const fakeLogin = (event) =>{
+ event.preventDefault();
+  new Noty({
+  layout: "center",
+  type: "error",
+  theme: "sunset",
+  text : "Sorry we are having troubles right now...",
+  timeout: 4000
+}).show();
+ }   
+
     return (
         <div className="container">
             <Navbar />
@@ -9,7 +26,7 @@ function Login() {
                 <h2>Welcome back!</h2>
                 <br />
             <h3>Login</h3>
-            <form>
+            <form onSubmit={(event) => fakeLogin(event)}>
                 <div className="col-6">
             <label>E-mail</label>
             <input type="text" name="email" placeholder="example@gmail.com" className="form-control" />

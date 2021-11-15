@@ -32,7 +32,7 @@ router.post('/', favoriteActivityIdGuard, userIdGuard, async function(req, res, 
 //DELETE an activity from fav
 router.delete('/:id', favoriteActivityIdGuard,  async function(req, res, next) {
   
-  //const { id } = req.params;
+  const { id } = req.params;
   
   try{
     await db(`DELETE * FROM favorities WHERE id = "${id}";`)
