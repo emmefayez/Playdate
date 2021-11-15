@@ -4,6 +4,7 @@ import Home from './Home';
 import Activities from './Activities';
 import User from './User';
 import Registration from './Registration';
+import Login from './Login';
 import Admin from './Admin';
 import Places from './Places';
 
@@ -13,6 +14,7 @@ function App() {
             <Routes>
     <Route path="/" element={<Home />}/> 
     <Route path="/register" element={<Registration />}/> 
+    <Route path="/login" element={<Login />}/> 
     <Route path="/Activities" element={<Activities />}/> 
     <Route path="/Places" element={<Places />}/> 
     <Route path="users" element={<User />}/>      

@@ -43,6 +43,18 @@ catch(err){
    setError(err.message);
 }
   };
+
+const registerFirst = (event) =>{
+  event.preventDefault();
+  new Noty({
+  layout: "center",
+  type: "error",
+  theme: "sunset",
+  text : "You need to register or log in first!",
+  timeout: 4000
+}).show();
+}
+
   return (
     <div>
      <Navbar />
@@ -67,7 +79,7 @@ catch(err){
              <h5>Description:</h5> <p>{activity.description}</p>
              </div>
              
-             <button className="btn btn-primary m-2" addToFav={()=> setActivities(activity.id)} >Add to favorities</button>
+             <button className="btn btn-primary m-2" onClick = {(event) => registerFirst(event) } addToFav={()=> setActivities(activity.id)} >Add to favorities</button>
              </li>
            </div>
          </div>

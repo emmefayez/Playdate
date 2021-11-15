@@ -108,6 +108,7 @@ const {avatar_group, name, email, password, repeat_password} = user;
                 name="repeat_password"
                 value={repeat_password}
                 required
+                minLength="8"
                  onChange={(e)=>handleInputChange(e)}
                 />
                 </div>

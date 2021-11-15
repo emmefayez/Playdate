@@ -21,7 +21,7 @@ export default function Home() {
             <section className="card">
                 <div className="card-body">
                 <h2>Activities catalogue</h2>
-                <p>Browse through the catalogue to find the perfect game, you can filter by keyword (ex. sand, ball, draw) or by age.</p>
+                <p>Browse through the catalogue to find the perfect game and filter using a keyword.</p>
                 
                 <span>Take a look </span>
                    <Link to="/Activities">here</Link>

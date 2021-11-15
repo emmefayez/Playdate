@@ -13,6 +13,7 @@ function Navbar() {
      <div>
      <span className="m-3"><Link to="/Admin">Admin</Link></span>
      <span className="m-3"><Link to="/register">Sign in</Link></span>
+     <span className="m-3"><Link to="/login">Log in</Link></span>
      <span className="m-3"><Link to="/users">My profile</Link></span>
      </div>
       </div>

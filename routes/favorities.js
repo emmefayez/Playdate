@@ -21,8 +21,7 @@ router.post('/', favoriteActivityIdGuard, userIdGuard, async function(req, res, 
   const {activity_id, user_id} = req.body;
 
   try{
-    await db(`INSERT INTO favorities (activity_id) VALUES (${activity_id})`)
-     await db(`INSERT INTO favorities (user_id) VALUES (${user_id})`)
+    await db(`INSERT INTO favorities (activity_id, user id) VALUES (${activity_id}, ${user_id})`)
     res.send({message: "activity added to favorities"});
   }
   catch(err){

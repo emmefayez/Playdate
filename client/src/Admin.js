@@ -14,8 +14,6 @@ const [error, setError] = useState("");
 const[deleteConfirmMsg, setDeleteConfirmMsg] = useState("");
 
 
-
-
 useEffect(() => {
     getActivities();
   }, []);
@@ -63,7 +61,7 @@ try{
   getActivities(); 
 }
 catch(err){
-   setError(err);
+   setDeleteConfirmMsg(err);
 }
 new Noty({
   layout: "center",

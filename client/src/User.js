@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 function User(props) {
 //don't delete this because you are sending the activity to be displayed in the "Activities" component
 const [activities, setActivities] = useState([]);
-const [favActivities, setFavActivities] = useState([{name: "Piggy bank", age: 1, description: ""}]);
+const [favActivities, setFavActivities] = useState([{name: "", age: 1, description: ""}]);
 const [error, setError] = useState("");
 //this will probably not being necessary with auth
 const [users, setUsers] = useState([{avatar: "", name: "", email:"", password:"", repeat_password:""}])
@@ -15,6 +15,7 @@ const [users, setUsers] = useState([{avatar: "", name: "", email:"", password:""
 //fetch of just the fav activities 
 //using the props id
 useEffect(() => {
+    getUser();
     getFavActivities();
   }, []);
 
@@ -55,7 +56,7 @@ return (
         
             <div className="profile-card">
                     <h1>Profile Page</h1>
-                    {users.map( user => (<div key={user.id}>
+                    {users && users.map( user => (<div key={user.id}>
                        <img src={user.avatar} alt="profile avatar" className="img-thumbnail"/>
                    <h5> Welcome back, {user.name} !</h5>
                    <div className="profile-card"></div>
