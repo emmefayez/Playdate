@@ -14,7 +14,7 @@ export default function Home() {
             <section className="col-6">
                 <h3>Run out of ideas to entratain your kid/s?</h3>
                 <p> No need to panic!</p> <p> We have a list of suggestions for <strong>you</strong>!</p>
-                <p>All the activities of Playdate are based on the principles of non-formal learning and Montessori education.</p>
+                <p>You can also share an activity that you like to play!</p>
             </section>
 
             <div className="row mt-4">
