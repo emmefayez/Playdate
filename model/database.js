@@ -53,10 +53,16 @@ con.connect(function(err) {
 
   let users =
  `CREATE TABLE users (
-	name VARCHAR(255) NOT NULL,
 	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	repeat_password VARCHAR(255) NOT NULL,
+	avatar VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id)
 );
+
+
 `
   con.query(users, function(err, result) {
     if (err) throw err;

@@ -12,6 +12,7 @@ function Navbar() {
       <span className="m-3"><Link to="/Places">Places</Link></span>
      <div>
      <span className="m-3"><Link to="/Admin">Admin</Link></span>
+     <span className="m-3"><Link to="/register">Sign in</Link></span>
      <span className="m-3"><Link to="/users">My profile</Link></span>
      </div>
       </div>
