@@ -20,7 +20,7 @@ useEffect(() => {
   }, []);
 
 //to display the profile of the user
-const getUser = async (id=1) =>{
+const getUser = async (id=10) =>{
 
 try{ 
   const response = await fetch(`/users/${id}`);
@@ -53,10 +53,13 @@ return (
     <div>
      <Navbar />
       <div className="container">
-        
+        <h1>Welcome to your profile</h1>
+        <p>Here you can see your data and the activities you liked the most!</p>
+        <div className="row m-4">
+        <div className="col-6">
             <div className="profile-card">
-                    <h1>Profile Page</h1>
-                    <img src={avatar_1} alt="profile avatar" className="img-thumbnail"/>
+                    
+                    <img src={avatar_1} alt="profile avatar" className="img-fluid" id="profile"/>
                     {users && users.map( user => (<div key={user.id}>
                    <h5> Welcome back, {user.name} !</h5>
                    <div className="profile-card"></div>
@@ -71,7 +74,7 @@ return (
               
       </div>
    
-        <div className="user-info mt-4">
+        <div className="col-6 mt-4">
           <h3>Your favorities activities:</h3>
          {favActivities && favActivities.map(activity => (<div key={activity.id} className="card-body">
            <div >
@@ -87,6 +90,8 @@ return (
            </div>
          </div>))}
          {!favActivities.length ? `You have no favorities to your activity catalogue, go take a look!` : favActivities }
+        </div>
+        </div>
         </div>
          
         <div className="container mt-4">
