@@ -6,13 +6,13 @@ Playdate is an interactive catalogue that collects activities to do with childre
 
 Parenthood it's a strange journey. It's easy to stumble in the guilt-loop of "not spending enough quality time" with your kids and at the same time beign too tired to come up with ideas of what to do together.
 
-This is way I created Playdate: a platform where family members or educators can share their knowledge about activities, each entry contains a short description of the activity and the age group to which is addressed.
+This is way I created Playdate: a platform where caregivers or educators can share their knowledge about activities, each entry contains a short description of the activity and the age group to which is addressed.
 
 The activities can be filtered by keyword, each activity should have a title, the age to which is addressed and a short description.
 
 *Future features* 
 
-The more, the merrier! In the future Playdate will contain a feature to organize group activity, allowing a user to join one (and maybe have a quick chat before to the organizer!).
+The more, the merrier! In the future Playdate will contain a feature to organize group activity, allowing a user to organise an activity or join one (and maybe have a quick chat before to the organizer!).
 
 There is no real authentication, *yet*. Once it will be possible for real to log-in, each user will be able to add an activity to their favorites list, that will be shown in their profile.
 
@@ -69,16 +69,17 @@ The following components are fully functional:
 
 - Home
 - Navbar
-- Activities
-- Addform
+- Info (about section)
+- Activities (activities section)
+- Addform (form to add an activity)
 - Searchform
-- Places
-- Registration
-- Admin
+- Places (underconstruction)
+- Registration (registration form)
+- Admin (admin dashboard)
 
 While these needs to be completed adding authentication:
 
-- User
+- User (user dashboard)
 - Log in
 
 ## Setup
@@ -124,7 +125,7 @@ Playdate use Noty to display custom alert messages when some actions are perfome
 
 ### Notes
 
-*The activities displayed in the catalogue are modification of exsistent non-formal education exercises you may find in:*
+*The activities displayed in the catalogue are modification of exsistent non-formal learning and Montessori activities you may find in:*
 
 - Compasito manual on Human Rights Education for children
 - My first Montessori: Montessori activities for children

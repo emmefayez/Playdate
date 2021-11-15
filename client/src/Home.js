@@ -14,6 +14,7 @@ export default function Home() {
             <section className="col-6">
                 <h3>Run out of ideas to entratain your kid/s?</h3>
                 <p> No need to panic!</p> <p> We have a list of suggestions for <strong>you</strong>!</p>
+                <p>All the activities of Playdate are based on the principles of non-formal learning and Montessori education.</p>
             </section>
 
             <div className="row mt-4">
@@ -21,7 +22,7 @@ export default function Home() {
             <section className="card">
                 <div className="card-body">
                 <h2>Activities catalogue</h2>
-                <p>Browse through the catalogue to find the perfect game and filter using a keyword.</p>
+                <p>Browse through the catalogue to find the perfect game.You can also filter the results using a keyword.</p>
                 
                 <span>Take a look </span>
                    <Link to="/Activities">here</Link>

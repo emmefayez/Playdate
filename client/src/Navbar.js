@@ -10,6 +10,7 @@ function Navbar() {
      <Link to="/">Home</Link>
      <span className="m-3"><Link to="/Activities">Activities</Link></span>
       <span className="m-3"><Link to="/Places">Places</Link></span>
+      <span className="m-3"><Link to="/info">About</Link></span>
      <div>
      <span className="m-3"><Link to="/Admin">Admin</Link></span>
      <span className="m-3"><Link to="/register">Sign in</Link></span>
