@@ -25,7 +25,7 @@ router.get('/:id', userIdGuard, async function(req, res, next){
     res.send(results.data);
   }
   catch(err){
-    console.log('am i here now?', err)
+
        res.status(500).send(err);
   }
 });
@@ -50,20 +50,22 @@ router.post('/', async function(req, res, next) {
 //DELETE PROFILE
 router.delete('/:id', userIdGuard,  async function(req, res, next) {
   
-  //const { id } = req.params;
+  const id = req.params.id;
+  console.log(id)
   
   try{
-    await db(`DELETE * FROM users WHERE id = "${id}";`)
+    await db(`DELETE FROM users WHERE id ="${id}";`)
     res.send({message:"Profile deleted"});
   }
   catch(err){
+    console.log(err)
        res.status(500).send(err);
   }
 });
 
 //UPDATE USER PROFILE
 router.put('/:id', userIdGuard, async function(req, res, next) {
-  //const { id } = req.params;
+  const { id } = req.params;
   const {name, email, password, repeat_password } = req.body;
  
   try{

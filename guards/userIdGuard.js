@@ -10,7 +10,7 @@ async function userIdGuard(req, res, next) {
       
       return res.status(404).send({ message: "There is no user with this id" }); 
     }
-    console.log("I make it here");
+    
     next(); 
   } catch (error) {
     
