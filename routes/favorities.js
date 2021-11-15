@@ -35,8 +35,8 @@ router.delete('/:id', favoriteActivityIdGuard,  async function(req, res, next) {
   const { id } = req.params;
   
   try{
-    await db(`DELETE * FROM favorities WHERE id = "${id}";`)
-    res.send({message:"Activity deleted from favorities"});
+    await db(`DELETE FROM favorities WHERE id = "${id}";`)
+    res.send({message:"You not longer like this activity"});
   }
   catch(err){
        res.status(500).send(err);
