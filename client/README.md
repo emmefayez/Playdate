@@ -29,6 +29,7 @@ There is already space for a **places catalogue** using this API of  **Open Data
 - Stack
 - Database
 - Endpoints
+- FrontEnd
 
 **Stack**
 
@@ -38,7 +39,7 @@ Playdate has been done using MySQL, Node.js/Express.js, React.js.
 
 Playdate database han a many to many structure. it has three tables: one to store the activities, one to store the user data and one that store the user_id and the activity_id.
 
-![database schema](client\databaseschema.png)
+![database schema](databaseschema.png)
 
 
 **Endpoints**
@@ -46,19 +47,37 @@ Playdate database han a many to many structure. it has three tables: one to stor
 
 | URL                	| HTTP Method 	| Description                                                        	| Request Object  	| Response Object                                                                                                                  	|
 |--------------------	|-------------	|--------------------------------------------------------------------	|-----------------	|----------------------------------------------------------------------------------------------------------------------------------	|
-| /activities        	| GET         	| Get all the activities in the catalogue                            	|                 	| {"id": integer<br>"title":string,<br>"age": integer,<br>"description": string}                                                    	|
-| /activities?query= 	| GET         	| Get all the activities which description contains the keyword used 	| ?query=keyword  	| {"id": integer,<br>"title": string,<br>"age": integer,<br>"description":string}                                                   	|
-| /activities        	| POST        	| Add an activity in the catalogue                                   	| req.params.body 	| {"id": integer,<br>"title": string,<br>"age":integer,<br>"description": string}                                                   	|
+| /activities        	| GET         	| Get all the activities in the catalogue                            	|                 	| [{"id": integer<br>"title":string,<br>"age": integer,<br>"description": string} ]                                                   	|
+| /activities?query= 	| GET         	| Get all the activities which description contains the keyword used 	| ?query=keyword  	| [{"id": integer,<br>"title": string,<br>"age": integer,<br>"description":string} ]                                                  	|
+| /activities        	| POST        	| Add an activity in the catalogue                                   	| req.params.body 	| [{"id": integer,<br>"title": string,<br>"age":integer,<br>"description": string} ]                                                  	|
 | /activities:id     	| DELETE      	| Delete the activity with the matching id                           	| req.params.body 	| { "message": "activity deleted!"}                                                                                                	|
 | /activities:id     	| PUT         	| Update the activity with the matching id                           	| req.params.body 	| {"message": "activity updated"}                                                                                                  	|
-| /users             	| GET         	| Get all the users                                                  	|                 	| {"id":integer<br>"avatar":string,<br>"name":string, <br>"email":string,<br>"password": string, <br>"repeat_password":string}     	|
+| /users             	| GET         	| Get all the users                                                  	|                 	| [{"id":integer<br>"avatar":string,<br>"name":string, <br>"email":string,<br>"password": string, <br>"repeat_password": string } ]    	|
 | /users:id          	| GET         	| Get a specific user matching id                                    	| req.params.id   	| {"id": integer,<br>"avatar": string,<br>"name": string,<br>"email": string,<br>"password": string,<br>"repeat_password": string} 	|
 | /users             	| POST        	| To register an user                                                	| req.params.body 	| {"message": "user created"}                                                                                                      	|
 | /users:id          	| PUT         	| Update the user profile                                            	| req.params.id   	| {"message": "profile updated"}                                                                                                   	|
 | /users:id          	| DELETE      	| Delete the user profile                                            	| req.params.id   	| {"message": "profile deleted"}                                                                                                   	|
-| /favorities        	| GET         	| List of activities favorite by a user                              	|                 	| {"activity_id":integer,<br>"user_id": integer}                                                                                   	|
+| /favorities        	| GET         	| List of activities favorite by a user                              	|                 	| [{"activity_id":integer,<br>"user_id": integer} ]                                                                                  	|
 | /favorities        	| POST        	| Add an activity to the favorities                                  	| req.params.body 	| {"message": "activity added to favorities"}                                                                                      	|
 | /favorities:id     	| DELETE      	| Delete an activity from the favorities table                       	| req.params.id   	| {"message": "You no longer like this activity"}                                                                                  	|
+
+There are also three guards to check if the provided id exsists.
+
+**FrontEnd**
+
+The following components are fully functional:
+
+- Home
+- Activities
+- Addform
+- Searchform
+- Places
+- Registration
+- Admin
+
+While these needs to be completed adding authentication.
+- User
+- Log in
 
 ## Setup
 
@@ -80,7 +99,15 @@ Run the following in the MySQL CLI: ALTER USER 'root'@'localhost' IDENTIFIED WIT
 
 Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create three tables: activities, users, favorities in your database.
 
-You can run `USE playdate` -> ``SHOW TABLES` -> `SELECT * FROM TABLE_NAME` to see how is built each one.
+Run:
+
+ `USE playdate` 
+
+ `SHOW TABLES`
+
+  `SELECT * FROM TABLE_NAME`
+
+ to see how is built each one.
 
 ### **Development**
 
