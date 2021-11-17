@@ -1,65 +1,78 @@
-
-
-h1{
-    color: #3DB2FF;
-    text-align: center;
-    
+.yellow {
+	background-color: #f3dd83;
 }
 
-h2{
-    color:#93D9A3;
-   
+h1 {
+	color: #3db2ff;
+	text-align: center;
 }
 
-h5{
-  color:#C85C5C;
-   font-weight: bold;
+h2 {
+	color: #93d9a3;
 }
 
-h3{
-font-size: 20px;
-color: #F9975D;
+h5 {
+	color: #c85c5c;
+	font-weight: bold;
 }
 
-p{
-font-size: 20px;
-color: #1EAE98;
+h3 {
+	font-size: 20px;
+	color: #f9975d;
 }
 
-/* section{
-border-style: dotted;
-border-color: #C85C5C;
+p {
+	font-size: 20px;
+	color: #1eae98;
+}
+
+section {
+	border-style: dotted;
+	border-color: #c85c5c;
+}
+
+/* #navbar {
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(8.5px);
+	-webkit-backdrop-filter: blur(8.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
 } */
 
-#navbar{
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 8.5px );
--webkit-backdrop-filter: blur( 8.5px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );}
-
-#main{
-    background: rgba( 96, 156, 218, 0.15 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 8.5px );
--webkit-backdrop-filter: blur( 8.5px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );
+#main {
+	background: rgba(96, 156, 218, 0.15);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(8.5px);
+	-webkit-backdrop-filter: blur(8.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
 }
-#one, #two, #three{
-  width: 30%;
+#one,
+#two,
+#three {
+	width: 30%;
 }
-.card-body{
-  flex-basis: 30%;
+.card-body {
+	flex-basis: 30%;
 }
 
-#registrationform{
-      display: flex;
-    flex-direction: column;
-    align-items: center;
+#registrationform {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-#profile{
-  width:20%;
-  border-radius: 20px;
+#profile {
+	width: 20%;
+	border-radius: 20px;
+}
+
+.footer {
+	margin-top: 1rem;
+	padding: 1rem;
+	background-image: url(./img/testing.png);
+
+	bottom: 0;
+	left: 0;
+	width: 100%;
 }
