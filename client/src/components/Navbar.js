@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function Navbar() {
 	return (
@@ -44,7 +43,7 @@ function Navbar() {
 						<a className="nav-link" href={`/login`}>
 							Log in
 						</a>
-						<a className="nav-link" href={`/users`}>
+						<a className="nav-link" href={`/profile`}>
 							My profile
 						</a>
 					</div>

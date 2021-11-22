@@ -1,46 +1,63 @@
-var express = require('express');
+var express = require("express");
+const { VariantAlsoNegotiates } = require("http-errors");
 var router = express.Router();
 const favoriteActivityIdGuard = require("../guards/favoriteActvityIdGuard");
-const userIdGuard = require("../guards/userIdGuard");
+var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
+
 const db = require("../model/helper");
 
 /* GET activities listing. */
-router.get('/', async function(req, res, next) {
-  try{
-    const results = await db("SELECT * FROM favorities;");
-    res.send(results.data);
-  }
-  catch(err){
-       res.status(500).send(err);
-  }
+router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
+	try {
+		const results = await db(
+			`SELECT favorities.id, favorities.user_id, favorities.activity_id, activities.age, activities.name, activities.description FROM favorities join activities on favorities.activity_id = activities.id WHERE user_id = ${req.user_id}; `
+		);
+		res.send(results.data);
+	} catch (err) {
+		res.status(500).send(err);
+	}
 });
+
+// `SELECT favorities.id, favorities.user_id, activities.id, activities.age, activities.name, activities.description FROM favorities join activities on favorities.activity_id = activities.id WHERE user_id = 3; `
+// select * from bookings left join users on bookings.userId = users.id ;
 
 //ADD activity to favorities
-router.post('/', favoriteActivityIdGuard, userIdGuard, async function(req, res, next) {
- 
-  const {activity_id, user_id} = req.body;
+router.post(
+	"/",
+	// favoriteActivityIdGuard,
+	userShouldBeLoggedIn,
+	async function (req, res, next) {
+		const { activity_id } = req.body;
 
-  try{
-    await db(`INSERT INTO favorities (activity_id, user id) VALUES (${activity_id}, ${user_id})`)
-    res.send({message: "activity added to favorities"});
-  }
-  catch(err){
-       res.status(500).send(err);
-  }
-});
+		try {
+			await db(
+				`INSERT INTO favorities (activity_id, user_id) VALUES (${activity_id}, ${req.user_id})`
+			);
+			const results = await db(
+				`SELECT * FROM favorities WHERE user_id = ${req.user_id}`
+			);
+			res.send(results.data);
+		} catch (err) {
+			res.status(500).send(err);
+		}
+	}
+);
 
 //DELETE an activity from fav
-router.delete('/:id', favoriteActivityIdGuard,  async function(req, res, next) {
-  
-  const { id } = req.params;
-  
-  try{
-    await db(`DELETE FROM favorities WHERE id = "${id}";`)
-    res.send({message:"You not longer like this activity"});
-  }
-  catch(err){
-       res.status(500).send(err);
-  }
+router.delete("/", userShouldBeLoggedIn, async function (req, res, next) {
+	const { activity_id } = req.body;
+
+	try {
+		await db(
+			`DELETE FROM favorities WHERE activity_id = ${activity_id} AND user_id = ${req.user_id};`
+		);
+		const results = await db(
+			`SELECT favorities.id, favorities.user_id, favorities.activity_id, activities.age, activities.name, activities.description FROM favorities join activities on favorities.activity_id = activities.id WHERE user_id = ${req.user_id};`
+		);
+		res.send(results.data);
+	} catch (err) {
+		res.status(500).send(err);
+	}
 });
 
 //GET list of fav activities filtered by user - it can be an added functionality in the admin
@@ -54,6 +71,5 @@ router.delete('/:id', favoriteActivityIdGuard,  async function(req, res, next) {
 //        res.status(500).send(err);
 //   }
 // });
-
 
 module.exports = router;

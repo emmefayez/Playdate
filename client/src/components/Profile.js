@@ -1,52 +1,88 @@
 import React, { useState, useEffect } from "react";
 import AddForm from "./AddForm";
-import Navbar from "./Navbar";
 import avatar_1 from "../img/avatar_1.png";
+import axios from "axios";
 
-function User() {
+function Profile() {
 	//don't delete this because you are sending the activity to be displayed in the "Activities" component
 	const [activities, setActivities] = useState([]);
 	const [favActivities, setFavActivities] = useState([]);
 	const [error, setError] = useState("");
 	//this will probably not being necessary with auth
-	const [users, setUsers] = useState([
-		{ avatar: "", name: "", email: "", password: "", repeat_password: "" },
-	]);
+	const [users, setUsers] = useState([]);
 
 	//fetch of just the fav activities
 	//using the props id
 	useEffect(() => {
 		getUser();
+		getFavActivities();
 	}, []);
 
 	//to display the profile of the user
-	const getUser = async (id = 10) => {
+	const getUser = async () => {
 		try {
-			const response = await fetch(`/users/${id}`);
-			const data = await response.json();
-			setUsers(data);
+			const response = await axios.get(`/users/profile`, {
+				headers: {
+					authorization: "Bearer " + localStorage.getItem("token"),
+				},
+			});
+			setUsers(response.data);
 		} catch (err) {
 			setError(err);
 		}
 	};
 
 	//THIS will be really work once auth will be incorporeted in the project, I inserted a fav activity manually rn
-	// const getFavActivities = async () =>{
+	const getFavActivities = async () => {
+		try {
+			const data = await axios.get("/favorities", {
+				headers: {
+					authorization: "Bearer " + localStorage.getItem("token"),
+				},
+			});
 
-	// try{
-	//   const response = await fetch('/favorities');
-	//   const data = await response.json();
-	//   setFavActivities(data);
+			setFavActivities(data.data);
+		} catch (err) {
+			setError(err.message);
+		}
+	};
 
-	// }
-	// catch(err){
-	//    setError(err.message);
-	// }
-	//   };
+	const removeFromFav = async (activity) => {
+		try {
+			const result = await axios.delete("/favorities", {
+				data: { activity_id: activity.activity_id },
+				headers: {
+					authorization: "Bearer " + localStorage.getItem("token"),
+				},
+			});
+			console.log("try");
+
+			setFavActivities(result.data);
+		} catch (err) {
+			console.log("err");
+			setError(err.message);
+		}
+	};
+
+	// const addToFav = async (activity) => {
+	// 	console.log("clicked", activity.id, user.id);
+	// 	try {
+	// 		await axios.post(
+	// 			"/favorities",
+	// 			{ activity_id: activity.id },
+	// 			{
+	// 				headers: {
+	// 					authorization: "Bearer " + localStorage.getItem("token"),
+	// 				},
+	// 			}
+	// 		);
+	// 	} catch (error) {
+	// 		setError(error.message);
+	// 	}
+	// };
 
 	return (
 		<div>
-			<Navbar />
 			<div className="container">
 				<h1>Welcome to your profile</h1>
 				<p>Here you can see your data and the activities you liked the most!</p>
@@ -73,7 +109,7 @@ function User() {
 
 					<div className="col-6 mt-4">
 						<h3>Your favorities activities:</h3>
-						{favActivities &&
+						{favActivities.length > 0 &&
 							favActivities.map((activity) => (
 								<div key={activity.id} className="card-body">
 									<div>
@@ -85,13 +121,17 @@ function User() {
 												</span>
 												<p>Description: {activity.description}</p>
 											</div>
+											<button
+												className="btn btn-danger"
+												onClick={() => removeFromFav(activity)}
+											>
+												{" "}
+												Delete{" "}
+											</button>
 										</li>
 									</div>
 								</div>
 							))}
-						{!favActivities.length
-							? `You have no favorities to your activity catalogue, go take a look!`
-							: favActivities}
 					</div>
 				</div>
 			</div>
@@ -104,4 +144,4 @@ function User() {
 	);
 }
 
-export default User;
+export default Profile;

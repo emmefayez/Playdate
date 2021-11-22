@@ -17,9 +17,9 @@ function SearchForm(props) {
 	return (
 		// <div className="search_form">
 		// 	<div id="search_activity" className="container">
-		<form>
+		<form onSubmit={handleSubmit}>
 			<label>
-				<h5>Search by keyword</h5>
+				<h5 className="blue-d">Search by keyword</h5>
 			</label>
 			<input
 				className="form-control mb-4"
@@ -33,7 +33,6 @@ function SearchForm(props) {
 				aria-label="Search_button"
 				type="button"
 				className="btn btn-primary"
-				onClick={handleSubmit}
 			>
 				Search
 			</button>

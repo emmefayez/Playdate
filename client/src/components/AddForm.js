@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import Noty from "noty";
 // import "../../node_modules/noty/lib/themes/bootstrap-v4.css";
 // import "../../node_modules/noty/lib/themes/sunset.css";
@@ -29,6 +29,8 @@ function AddForm(props) {
 
 	const navigate = useNavigate();
 
+	const pathname = window.location.pathname;
+
 	//ADD
 	const addActivity = async () => {
 		try {
@@ -53,8 +55,12 @@ function AddForm(props) {
 			timeout: 2000,
 		}).show();
 
-		setNewActivity("");
-		navigate(`/admin`);
+		setNewActivity({
+			name: "",
+			age: 1,
+			description: "",
+		});
+		pathname === "/admin/add" ? navigate(`/admin`) : navigate(`/profile`);
 	};
 
 	return (
@@ -64,12 +70,14 @@ function AddForm(props) {
 			</div>
 
 			<form className="form-control" onSubmit={handleSubmit}>
-				<button
-					className="btn btn-primary mt-4 mb-4"
-					onClick={() => navigate(`/admin`)}
-				>
-					Nevermind
-				</button>
+				{pathname === "/admin/add" && (
+					<button
+						className="btn btn-primary mt-4 mb-4"
+						onClick={() => navigate(`/admin`)}
+					>
+						Nevermind
+					</button>
+				)}
 				<div className="mb-4">
 					<h2>Add new activity</h2>
 					<p>Don't leave any field empty </p>

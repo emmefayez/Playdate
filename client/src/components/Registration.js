@@ -10,7 +10,6 @@ function Registration() {
 		name: "",
 		email: "",
 		password: "",
-		repeat_password: "",
 	});
 
 	const [error, setError] = useState("");
@@ -26,7 +25,7 @@ function Registration() {
 
 	const register = async () => {
 		try {
-			const response = await fetch("/users", {
+			const response = await fetch("/users/register", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -49,7 +48,7 @@ function Registration() {
 			timeout: 4000,
 		}).show();
 	};
-	const { avatar_group, name, email, password, repeat_password } = user;
+	const { avatar_group, name, email, password } = user;
 
 	return (
 		<div className="registration">
@@ -149,20 +148,9 @@ function Registration() {
 							onChange={(e) => handleInputChange(e)}
 						/>
 					</div>
+
 					<div className="col-6 mt-4">
-						<label className="form-label mt-4">Repeat Password</label>
-						<input
-							className="form-control"
-							type="password"
-							name="repeat_password"
-							value={repeat_password}
-							required
-							minLength="8"
-							onChange={(e) => handleInputChange(e)}
-						/>
-					</div>
-					<div className="col-6 mt-4">
-						<div class="form-check">
+						<div className="form-check">
 							<input
 								className="form-check-input"
 								type="checkbox"
@@ -176,7 +164,7 @@ function Registration() {
 						</div>
 					</div>
 					<div className="col-6 mt-4">
-						<button type="submit" class="btn btn-primary">
+						<button type="submit" className="btn btn-primary">
 							Register
 						</button>
 					</div>
