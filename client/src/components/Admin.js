@@ -65,7 +65,7 @@ function Admin() {
 	};
 
 	return (
-		<div className="container">
+		<div className="container bg-lightop shadow mt-4">
 			<Link to={`/admin/add`}>
 				<button className="btn btn-primary mt-4 mb-4">Add new activity</button>
 			</Link>

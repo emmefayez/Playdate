@@ -83,7 +83,7 @@ function Profile() {
 
 	return (
 		<div>
-			<div className="container">
+			<div className="container bg-lightop shadow mt-4">
 				<h1>Welcome to your profile</h1>
 				<p>Here you can see your data and the activities you liked the most!</p>
 				<div className="row m-4">

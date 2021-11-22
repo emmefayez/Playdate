@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Info() {
 	return (
-		<div className="info_section mt-4">
+		<div className="container bg-lightop shadow mt-4">
 			<section className="container mt-4">
 				<h3>Why Playdate?</h3>
 				<br />

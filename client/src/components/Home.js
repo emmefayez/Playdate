@@ -6,7 +6,7 @@ import "../App.css";
 
 export default function Home() {
 	return (
-		<div className="container bg-light shadow mt-4">
+		<div className="container bg-lightop shadow mt-4">
 			<section className="col-6">
 				<h3>Run out of ideas to entratain your kid/s?</h3>
 				<p> No need to panic!</p>{" "}

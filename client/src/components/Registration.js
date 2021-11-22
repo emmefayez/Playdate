@@ -51,7 +51,7 @@ function Registration() {
 	const { avatar_group, name, email, password } = user;
 
 	return (
-		<div className="registration">
+		<div className="container bg-lightop shadow mt-4">
 			<div className="container mt-4">
 				<h1>Registration</h1>
 				<h3>Choose your avatar</h3>

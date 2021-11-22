@@ -104,8 +104,8 @@ function Login() {
 	};
 
 	return (
-		<div className="container">
-			<div className="container m-4">
+		<div className="container bg-lightop shadow mt-4">
+			<div className="container">
 				<h2>Welcome back!</h2>
 				<br />
 				<h3>Login</h3>

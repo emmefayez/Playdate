@@ -5,7 +5,7 @@ import Noty from "noty";
 
 function Places() {
 	return (
-		<div className="container m-4">
+		<div className="container bg-lightop shadow mt-4">
 			<div className="container mt-4">
 				<h4>Work in progress...</h4>
 			</div>

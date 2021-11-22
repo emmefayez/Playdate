@@ -115,7 +115,7 @@ section {
 	overflow: none;
 }
 
-.bg-test {
+.bg-lightop {
 	--bs-bg-opacity: 0.8;
 	background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 }

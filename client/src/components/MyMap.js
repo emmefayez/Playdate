@@ -24,7 +24,7 @@ export default function MyMap() {
 	const googleMaps = `https://www.google.com/maps/search/?api=1&query=${anchor[0]}%2C${anchor[1]}`;
 
 	return (
-		<div className="container mt-4 bg-light">
+		<div className="container bg-lightop shadow mt-4">
 			<Map
 				provider={maptilerProvider}
 				// dprs={[1, 2]} // this provider supports HiDPI tiles
