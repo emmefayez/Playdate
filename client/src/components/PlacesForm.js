@@ -16,8 +16,9 @@ export default function PlacesForm({ anchor, onDone }) {
 
 	useEffect(() => {
 		setNewPlace({ ...newPlace, latitude: anchor[0], longitude: anchor[1] });
-		// addy();
 	}, [anchor]);
+
+	const apiKey = "afcv2MJNDXWhstq1z6wuOXpyDpPm9Tqs";
 
 	const { name, age, type, latitude, longitude, address, description } =
 		newPlace;
@@ -25,16 +26,25 @@ export default function PlacesForm({ anchor, onDone }) {
 	const handleInputChange = (event) => {
 		const { value, name } = event.target;
 		setNewPlace((state) => ({ ...state, [name]: value }));
+		if (name === "address")
+			setNewPlace((state) => ({ ...state, latitude: "", longitude: "" }));
 	};
 
+	let lat, lng;
+
 	const addPlace = async () => {
+		await getCoordinates();
 		try {
 			const res = await fetch("/places", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(newPlace),
+				body: JSON.stringify({
+					...newPlace,
+					latitude: newPlace.latitude || lat,
+					longitude: newPlace.longitude || lng,
+				}),
 			});
 			const data = await res.json();
 			setNewPlace(data);
@@ -61,50 +71,23 @@ export default function PlacesForm({ anchor, onDone }) {
 		onDone();
 	};
 
-	// try {
-	// 	const res = await fetch("/journal_entries", {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-Type": "application/json",
-	// 		},
-	// 		body: JSON.stringify(joy),
-	// 	});
-	// 	const data = await res.json();
-	// 	setJoy(data);
-	// } catch (err) {
-	// 	console.log(err);
-	// }
-	// setJoy({ date: "", moment_of_joy: "" });
-	// onDone();
-
-	const addy = async () => {
+	const getAddress = async () => {
 		setError("");
 
-		if (latitude !== 41.3874 && longitude !== 2.1686) {
-			const result = await fetch(
-				`http://www.mapquestapi.com/geocoding/v1/reverse?key=${apiKey}&location=${latitude},${longitude}&includeRoadMetadata=true&includeNearestIntersection=true`
-			);
-			const splitAdd = await result.json();
-			setNewPlace((state) => ({
-				...state,
-				address: `${splitAdd.results[0].locations[0].street}, ${splitAdd.results[0].locations[0].adminArea5}, ${splitAdd.results[0].locations[0].adminArea1}, ${splitAdd.results[0].locations[0].postalCode}`,
-			}));
-		}
+		const result = await fetch(
+			`http://www.mapquestapi.com/geocoding/v1/reverse?key=${apiKey}&location=${latitude},${longitude}&includeRoadMetadata=true&includeNearestIntersection=true`
+		);
+		const splitAdd = await result.json();
+		setNewPlace((state) => ({
+			...state,
+			address: `${splitAdd.results[0].locations[0].street}, ${splitAdd.results[0].locations[0].adminArea5}, ${splitAdd.results[0].locations[0].adminArea1}, ${splitAdd.results[0].locations[0].postalCode}`,
+		}));
 	};
 
 	const getCoordinates = async () => {
 		setError("");
 
-		if (latitude !== 41.3874 && longitude !== 2.1686) {
-			const result = await fetch(
-				`http://www.mapquestapi.com/geocoding/v1/reverse?key=${apiKey}&location=${latitude},${longitude}&includeRoadMetadata=true&includeNearestIntersection=true`
-			);
-			const splitAdd = await result.json();
-			setNewPlace((state) => ({
-				...state,
-				address: `${splitAdd.results[0].locations[0].street}, ${splitAdd.results[0].locations[0].adminArea5}, ${splitAdd.results[0].locations[0].adminArea1}, ${splitAdd.results[0].locations[0].postalCode}`,
-			}));
-		} else {
+		if (latitude === "" && longitude === "") {
 			const result = await fetch(
 				`http://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${address
 					.replace(/ /g, "+")
@@ -114,15 +97,11 @@ export default function PlacesForm({ anchor, onDone }) {
 			const splitAdd = await result.json();
 			console.log("split", splitAdd);
 
-			setNewPlace((state) => ({
-				...state,
-				latitude: +`${splitAdd.results[0].locations[0].latLng.lat}`,
-				longitude: +`${splitAdd.results[0].locations[0].latLng.lng}`,
-			}));
+			lat = +splitAdd.results[0].locations[0].latLng.lat;
+			lng = +splitAdd.results[0].locations[0].latLng.lng;
+		} else {
 		}
 	};
-
-	const apiKey = "afcv2MJNDXWhstq1z6wuOXpyDpPm9Tqs";
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -160,7 +139,9 @@ export default function PlacesForm({ anchor, onDone }) {
 						onChange={(e) => handleInputChange(e)}
 						minLength="5"
 					/>
-					<button onClick={(e) => addy()}>testing</button>
+					<button className="btn btn-primary" onClick={(e) => getAddress()}>
+						Get Address from Pin
+					</button>
 				</div>
 				<textarea
 					value={description}
@@ -200,14 +181,6 @@ export default function PlacesForm({ anchor, onDone }) {
 						<option value="Museum">Museum</option>
 						<option value="Other">Other</option>
 					</select>
-					{/* {newPlace.type === "Other" && (
-						<input
-							value={type}
-							name="type"
-							type="text"
-							onChange={(e) => handleInputChange(e)}
-						/>
-					)} */}
 				</div>
 				<button type="submit" className="btn btn-primary m-2">
 					Add to catalogue
@@ -216,15 +189,3 @@ export default function PlacesForm({ anchor, onDone }) {
 		</div>
 	);
 }
-
-// http://www.mapquestapi.com/geocoding/v1/address?key=afcv2MJNDXWhstq1z6wuOXpyDpPm9Tqs&location=Carrer+de+l'Hospital+Barcelona+ES+08001
-// Carrer de l'Hospital, Barcelona, ES, 08001
-
-// http://www.mapquestapi.com/geocoding/v1/reverse?key={apiKey}&location={newPlace.latitude},{newPlace.longitude}&includeRoadMetadata=true&includeNearestIntersection=true
-
-// http://www.mapquestapi.com/geocoding/v1/reverse?key=afcv2MJNDXWhstq1z6wuOXpyDpPm9Tqs&location=33.768398,-118.185039&includeRoadMetadata=true&includeNearestIntersection=true
-
-// 41.4054° N, 2.1649° E
-// 33.768398 -118.185039
-
-// http://api.openweathermap.org/data/2.5/weather?q=london&appid=98bc94da52b3c7fbcaa93d8141b40c96&units=metric

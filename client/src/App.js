@@ -1,6 +1,7 @@
 import "./App.css";
 import "../node_modules/noty/lib/themes/sunset.css";
 import "../node_modules/noty/lib/noty.css";
+
 import Footer from "./components/Footer";
 
 import React, { useEffect } from "react";
@@ -11,10 +12,9 @@ import Profile from "./components/Profile";
 import Registration from "./components/Registration";
 import Login from "./components/Login";
 import Admin from "./components/Admin";
-import Places from "./components/Places";
 import Info from "./components/Info";
 import Navbar from "./components/Navbar";
-import MyMap from "./components/MyMap";
+import Places from "./components/Places";
 
 function App() {
 	const pathname = window.location.pathname;
@@ -26,11 +26,21 @@ function App() {
 	const color = () => {
 		switch (pathname) {
 			case "/":
-				return "#f3dd83";
+				return "#a3d3df";
 			case "/activities":
-				return "#c1cd97";
+				return "#a4d5ce";
+			case "/places":
+				return "#ffd5b6";
+			case "/info":
+				return "#9eaeb5";
+			case "/admin":
+				return "#d2c4f3";
+			case "/login":
+				return "#febdb0";
+			case "/register":
+				return "#febdb0";
 			default:
-				return "#c8b4ba";
+				return "#a4d5ce";
 		}
 	};
 
@@ -42,12 +52,12 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/mymap/*" element={<MyMap />} />
+				<Route path="/places/*" element={<Places />} />
 				<Route path="/register" element={<Registration />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/Activities" element={<Activities />} />
 				<Route path="/info" element={<Info />} />
-				<Route path="/Places" element={<Places />} />
+				{/* <Route path="/Places" element={<Places />} /> */}
 
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/admin/*" element={<Admin />} />

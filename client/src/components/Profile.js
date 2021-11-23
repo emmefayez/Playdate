@@ -64,27 +64,10 @@ function Profile() {
 		}
 	};
 
-	// const addToFav = async (activity) => {
-	// 	console.log("clicked", activity.id, user.id);
-	// 	try {
-	// 		await axios.post(
-	// 			"/favorities",
-	// 			{ activity_id: activity.id },
-	// 			{
-	// 				headers: {
-	// 					authorization: "Bearer " + localStorage.getItem("token"),
-	// 				},
-	// 			}
-	// 		);
-	// 	} catch (error) {
-	// 		setError(error.message);
-	// 	}
-	// };
-
 	return (
-		<div>
-			<div className="container bg-lightop shadow mt-4">
-				<h1>Welcome to your profile</h1>
+		<div className="container bg-lightop shadow mt-4">
+			<h1>Welcome to your profile</h1>
+			<div className="container bg-light">
 				<p>Here you can see your data and the activities you liked the most!</p>
 				<div className="row m-4">
 					<div className="col-6">
@@ -108,38 +91,43 @@ function Profile() {
 					</div>
 
 					<div className="col-6 mt-4">
-						<h3>Your favorities activities:</h3>
-						{favActivities.length > 0 &&
-							favActivities.map((activity) => (
-								<div key={activity.id} className="card-body">
-									<div>
-										<li className="list-group-item">
-											<div className="card-title">Title: {activity.name}</div>
-											<div className="card-text">
-												<span className="mb-4">
-													From children of: {activity.age} y.o
-												</span>
-												<p>Description: {activity.description}</p>
-											</div>
-											<button
-												className="btn btn-danger"
-												onClick={() => removeFromFav(activity)}
-											>
-												{" "}
-												Delete{" "}
-											</button>
-										</li>
-									</div>
+						{favActivities.length > 0 && (
+							<div>
+								<div>
+									<h3>Your favorities activities:</h3>
 								</div>
-							))}
+								{favActivities.map((activity) => (
+									<div key={activity.id} className="card-body">
+										<div>
+											<li className="list-group-item">
+												<div className="card-title">Title: {activity.name}</div>
+												<div className="card-text">
+													<span className="mb-4">
+														From children of: {activity.age} y.o
+													</span>
+													<p>Description: {activity.description}</p>
+												</div>
+												<button
+													className="btn btn-danger"
+													onClick={() => removeFromFav(activity)}
+												>
+													{" "}
+													Remove from Favorites{" "}
+												</button>
+											</li>
+										</div>
+									</div>
+								))}
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
-
 			<div className="container mt-4">
 				<p>Do you want to share an activity with us? Fill the form!</p>
 				<AddForm onDone={(newActivity) => setActivities(newActivity)} />
 			</div>
+			<br />
 		</div>
 	);
 }

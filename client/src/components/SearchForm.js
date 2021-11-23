@@ -15,34 +15,31 @@ function SearchForm(props) {
 	};
 
 	return (
-		// <div className="search_form">
-		// 	<div id="search_activity" className="container">
-		<form onSubmit={handleSubmit}>
-			<label>
-				<h5 className="blue-d">Search by keyword</h5>
-			</label>
-			<input
-				className="form-control mb-4"
-				type="text"
-				placeholder="ball, chalks, montessori"
-				name="keyword"
-				value={query}
-				onChange={(e) => handleQuery(e)}
-			/>
-			<button
-				aria-label="Search_button"
-				type="button"
-				className="btn btn-primary"
-			>
-				Search
-			</button>
+		<div className="card">
+			<form className="card-body" onSubmit={handleSubmit}>
+				<label>
+					<h5 className="card-title blue-d">Search by keyword</h5>
+				</label>
+				<input
+					className="form-control mb-4"
+					type="text"
+					placeholder="ball, chalks, montessori"
+					name="keyword"
+					value={query}
+					onChange={(e) => handleQuery(e)}
+				/>
+				<button
+					aria-label="Search_button"
+					type="button"
+					className="btn btn-primary"
+				>
+					Search
+				</button>
 
-			<div id="searchAge">
-				<hr />
-			</div>
-		</form>
-		// 	</div>
-		// </div>
+				<div id="searchAge"></div>
+			</form>
+		</div>
+		//
 	);
 }
 

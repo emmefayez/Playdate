@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+
 import avatar_1 from "../img/avatar_1.png";
 import avatar_2 from "../img/avatar_2.png";
 import avatar_3 from "../img/avatar_3.png";
@@ -22,6 +24,8 @@ function Registration() {
 		event.preventDefault();
 		register();
 	};
+
+	const navigate = useNavigate();
 
 	const register = async () => {
 		try {
@@ -47,12 +51,14 @@ function Registration() {
 			text: "Great! Welcome to Playdate!",
 			timeout: 4000,
 		}).show();
+		navigate("/profile");
 	};
 	const { avatar_group, name, email, password } = user;
 
 	return (
 		<div className="container bg-lightop shadow mt-4">
-			<div className="container mt-4">
+			<br />
+			<div className="container bg-light ">
 				<h1>Registration</h1>
 				<h3>Choose your avatar</h3>
 				<form id="registrationform" onSubmit={handleSubmit}>

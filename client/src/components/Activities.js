@@ -131,7 +131,8 @@ function Activities() {
 
 	return (
 		<div className="container bg-lightop shadow mt-4">
-			<div>
+			<br />
+			<div className=" bg-light ">
 				<SearchForm submitCb={(query) => getActivities(query)} />
 			</div>
 

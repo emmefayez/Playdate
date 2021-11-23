@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+
 import Noty from "noty";
 import axios from "axios";
 
@@ -7,6 +9,7 @@ function Login() {
 		email: "test",
 		password: "test",
 	});
+	const navigate = useNavigate();
 
 	const { email, password } = credentials;
 
@@ -59,21 +62,6 @@ function Login() {
 		}).show();
 	};
 
-	const requestData = async (e) => {
-		e.preventDefault();
-		try {
-			const { data } = await axios("/users/testing", {
-				headers: {
-					authorization: "Bearer " + localStorage.getItem("token"),
-				},
-			});
-
-			console.log(data.message);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
 	const login = async (e) => {
 		e.preventDefault();
 		try {
@@ -96,16 +84,25 @@ function Login() {
 			}
 
 			localStorage.setItem("token", data.token);
+			navigate("/profile");
 		} catch (error) {}
 	};
 
 	const logout = () => {
 		localStorage.removeItem("token");
+		new Noty({
+			layout: "topRight",
+			type: "success",
+			theme: "sunset",
+			text: "Successful logout",
+			timeout: 4000,
+		}).show();
 	};
 
 	return (
 		<div className="container bg-lightop shadow mt-4">
-			<div className="container">
+			<br />
+			<div className="container bg-light">
 				<h2>Welcome back!</h2>
 				<br />
 				<h3>Login</h3>
@@ -130,15 +127,19 @@ function Login() {
 						/>
 						<button className="btn btn-primary mt-4">Log in</button>
 
-						<div className="col-6 mt-4">
+						{/* <div className="col-6 mt-4">
 							<a href="#"> I forgot my password!</a>
-						</div>
+						</div> */}
 					</div>
 				</form>
-				<button className="btn btn-outline-dark ml-2" onClick={logout}>
+				<button
+					className="btn btn-outline-dark ml-2 mt-4 mb-4"
+					onClick={logout}
+				>
 					Log out
 				</button>
 			</div>
+			<br />
 		</div>
 	);
 }
