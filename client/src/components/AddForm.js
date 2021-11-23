@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import Noty from "noty";
-// import "../../node_modules/noty/lib/themes/bootstrap-v4.css";
-// import "../../node_modules/noty/lib/themes/sunset.css";
-// import "../../node_modules/noty/lib/noty.css";
 
 function AddForm(props) {
 	const [newActivity, setNewActivity] = useState({

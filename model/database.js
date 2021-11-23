@@ -86,8 +86,8 @@ con.connect(function (err) {
 		type TEXT,
 		description TEXT,
 		address TEXT,
-		latitude INT,
-		longitude INT,
+		latitude decimal(15, 10),
+		longitude decimal(15, 10),
 	
 		PRIMARY KEY (id)
 	);

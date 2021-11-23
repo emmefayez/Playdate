@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Noty from "noty";
 
-export default function PlacesForm({ anchor }) {
+export default function PlacesForm({ anchor, onDone }) {
 	const [newPlace, setNewPlace] = useState({
-		name: "test",
+		name: "",
 		age: 1,
 		type: "",
 		description: "",
@@ -26,34 +27,55 @@ export default function PlacesForm({ anchor }) {
 		setNewPlace((state) => ({ ...state, [name]: value }));
 	};
 
-	// const addy = () => {
-	// 	setError("");
-	// 	console.log(
-	// 		`http://www.mapquestapi.com/geocoding/v1/reverse?key=${apiKey}&location=${latitude},${longitude}&includeRoadMetadata=true&includeNearestIntersection=true`
-	// 	);
-	// 	if (latitude !== 41.3874 && longitude !== 2.1686) {
-	// 		console.log("after", longitude, latitude);
-	// 		fetch(
-	// 			`http://www.mapquestapi.com/geocoding/v1/reverse?key=${apiKey}&location=${latitude},${longitude}&includeRoadMetadata=true&includeNearestIntersection=true
-	// 			`
-	// 		)
-	// 			.then((coordinates) => {
-	// 				coordinates.json();
-	// 				// console.log(coordinates);
-	// 			})
-	// 			.then((coordinates2) => {
-	// 				console.log(` results ${coordinates2}`);
-	// 				setNewPlace((state) => ({
-	// 					...state,
-	// 					address: `${coordinates2.results.locations.street}`,
-	// 					// address: `${coordinates.results.locations.street}, ${coordinates.results.locations.adminArea5}, ${coordinates.results.locations.adminArea1}, ${coordinates.results.locations.postalCode}`,
-	// 				}));
-	// 			})
-	// 			.catch((error) => {
-	// 				setError("There was an error!", error);
-	// 			});
-	// 	}
-	// };
+	const addPlace = async () => {
+		try {
+			const res = await fetch("/places", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newPlace),
+			});
+			const data = await res.json();
+			setNewPlace(data);
+		} catch (error) {
+			setError(error.message);
+		}
+		new Noty({
+			layout: "topRight",
+			type: "success",
+			theme: "sunset",
+			text: "Location added!",
+			timeout: 2000,
+		}).show();
+
+		setNewPlace({
+			name: "",
+			age: 1,
+			type: "",
+			description: "",
+			latitude: "",
+			longitude: "",
+			address: "",
+		});
+		onDone();
+	};
+
+	// try {
+	// 	const res = await fetch("/journal_entries", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 		},
+	// 		body: JSON.stringify(joy),
+	// 	});
+	// 	const data = await res.json();
+	// 	setJoy(data);
+	// } catch (err) {
+	// 	console.log(err);
+	// }
+	// setJoy({ date: "", moment_of_joy: "" });
+	// onDone();
 
 	const addy = async () => {
 		setError("");
@@ -70,12 +92,46 @@ export default function PlacesForm({ anchor }) {
 		}
 	};
 
+	const getCoordinates = async () => {
+		setError("");
+
+		if (latitude !== 41.3874 && longitude !== 2.1686) {
+			const result = await fetch(
+				`http://www.mapquestapi.com/geocoding/v1/reverse?key=${apiKey}&location=${latitude},${longitude}&includeRoadMetadata=true&includeNearestIntersection=true`
+			);
+			const splitAdd = await result.json();
+			setNewPlace((state) => ({
+				...state,
+				address: `${splitAdd.results[0].locations[0].street}, ${splitAdd.results[0].locations[0].adminArea5}, ${splitAdd.results[0].locations[0].adminArea1}, ${splitAdd.results[0].locations[0].postalCode}`,
+			}));
+		} else {
+			const result = await fetch(
+				`http://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${address
+					.replace(/ /g, "+")
+					.replace(/,/g, "")}`
+			);
+			console.log("result", result);
+			const splitAdd = await result.json();
+			console.log("split", splitAdd);
+
+			setNewPlace((state) => ({
+				...state,
+				latitude: +`${splitAdd.results[0].locations[0].latLng.lat}`,
+				longitude: +`${splitAdd.results[0].locations[0].latLng.lng}`,
+			}));
+		}
+	};
+
 	const apiKey = "afcv2MJNDXWhstq1z6wuOXpyDpPm9Tqs";
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		addPlace();
+	};
 
 	return (
 		<div className="container">
-			<form>
-				{latitude} {longitude}
+			<form onSubmit={handleSubmit}>
 				<div className="mb-4">
 					<h2>Add new place</h2>
 					<p>Don't leave any field empty </p>
@@ -161,10 +217,14 @@ export default function PlacesForm({ anchor }) {
 	);
 }
 
-// http://www.mapquestapi.com/geocoding/v1/address?key=afcv2MJNDXWhstq1z6wuOXpyDpPm9Tqs&location=Carrer+d'en+Grassot+101+Barcelona+Spain+08025
+// http://www.mapquestapi.com/geocoding/v1/address?key=afcv2MJNDXWhstq1z6wuOXpyDpPm9Tqs&location=Carrer+de+l'Hospital+Barcelona+ES+08001
+// Carrer de l'Hospital, Barcelona, ES, 08001
 
 // http://www.mapquestapi.com/geocoding/v1/reverse?key={apiKey}&location={newPlace.latitude},{newPlace.longitude}&includeRoadMetadata=true&includeNearestIntersection=true
 
+// http://www.mapquestapi.com/geocoding/v1/reverse?key=afcv2MJNDXWhstq1z6wuOXpyDpPm9Tqs&location=33.768398,-118.185039&includeRoadMetadata=true&includeNearestIntersection=true
+
 // 41.4054° N, 2.1649° E
+// 33.768398 -118.185039
 
 // http://api.openweathermap.org/data/2.5/weather?q=london&appid=98bc94da52b3c7fbcaa93d8141b40c96&units=metric
