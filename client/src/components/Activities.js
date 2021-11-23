@@ -179,7 +179,6 @@ function Activities() {
 						</div>
 					))}
 				</div>
-				<div id="errorMsg">{error}</div>
 			</div>
 		</div>
 	);

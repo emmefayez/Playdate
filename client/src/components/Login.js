@@ -78,13 +78,14 @@ function Login() {
 					break;
 				case "Login successful, here is your token":
 					success(e);
+					navigate("/profile");
 					break;
 				default:
 					somethingElseWrong(e);
 			}
 
-			localStorage.setItem("token", data.token);
-			navigate("/profile");
+			data.token && localStorage.setItem("token", data.token);
+			console.log("data", data, "token", data.token);
 		} catch (error) {}
 	};
 
