@@ -6,8 +6,8 @@ import axios from "axios";
 
 function Login() {
 	const [credentials, setCredentials] = useState({
-		email: "test",
-		password: "test",
+		email: "",
+		password: "",
 	});
 	const navigate = useNavigate();
 
@@ -85,7 +85,6 @@ function Login() {
 			}
 
 			data.token && localStorage.setItem("token", data.token);
-			console.log("data", data, "token", data.token);
 		} catch (error) {}
 	};
 

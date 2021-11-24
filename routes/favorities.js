@@ -18,9 +18,6 @@ router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
 	}
 });
 
-// `SELECT favorities.id, favorities.user_id, activities.id, activities.age, activities.name, activities.description FROM favorities join activities on favorities.activity_id = activities.id WHERE user_id = 3; `
-// select * from bookings left join users on bookings.userId = users.id ;
-
 //ADD activity to favorities
 router.post(
 	"/",

@@ -55,11 +55,9 @@ function Profile() {
 					authorization: "Bearer " + localStorage.getItem("token"),
 				},
 			});
-			console.log("try");
 
 			setFavActivities(result.data);
 		} catch (err) {
-			console.log("err");
 			setError(err.message);
 		}
 	};

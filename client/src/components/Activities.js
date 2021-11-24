@@ -46,36 +46,38 @@ function Activities() {
 	};
 
 	const getFavActivities = async () => {
-		try {
-			const data = await axios.get("/favorities", {
-				headers: {
-					authorization: "Bearer " + localStorage.getItem("token"),
-				},
-			});
+		if (!!localStorage.getItem("token")) {
+			try {
+				const data = await axios.get("/favorities", {
+					headers: {
+						authorization: "Bearer " + localStorage.getItem("token"),
+					},
+				});
 
-			setFavActivities(data.data);
-		} catch (err) {
-			setError(err.message);
+				setFavActivities(data.data);
+			} catch (err) {
+				setError(err.message);
+			}
 		}
 	};
 
 	//to display the profile of the user
 	const getUser = async () => {
-		try {
-			const response = await axios.get(`/users/profile`, {
-				headers: {
-					authorization: "Bearer " + localStorage.getItem("token"),
-				},
-			});
-			console.log(response);
-			setUsers(response.data);
-		} catch (err) {
-			setError(err.message);
+		if (!!localStorage.getItem("token")) {
+			try {
+				const response = await axios.get(`/users/profile`, {
+					headers: {
+						authorization: "Bearer " + localStorage.getItem("token"),
+					},
+				});
+				setUsers(response.data);
+			} catch (err) {
+				setError(err.message);
+			}
 		}
 	};
 
 	const addToFav = async (activity) => {
-		console.log("clicked", activity.id, user.id);
 		if (
 			favActivities.filter(
 				(favActivity) => favActivity.activity_id === activity.id
@@ -105,7 +107,6 @@ function Activities() {
 		}
 	};
 	const removeFromFav = async (activity) => {
-		console.log(activity.id, activity.activity_id);
 		try {
 			const result = await axios.delete("/favorities", {
 				data: { activity_id: activity.id },
@@ -113,7 +114,6 @@ function Activities() {
 					authorization: "Bearer " + localStorage.getItem("token"),
 				},
 			});
-			console.log("try");
 
 			setFavActivities(result.data);
 			new Noty({
@@ -124,7 +124,6 @@ function Activities() {
 				timeout: 2000,
 			}).show();
 		} catch (err) {
-			console.log("err");
 			setError(err.message);
 		}
 	};

@@ -173,9 +173,12 @@ function Registration() {
 						<button type="submit" className="btn btn-primary">
 							Register
 						</button>
+						<br />
+						<br />
 					</div>
 				</form>
 			</div>
+			<br />
 		</div>
 	);
 }

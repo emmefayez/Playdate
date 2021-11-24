@@ -77,7 +77,6 @@ export default function Places() {
 	const handleIconClick = (location) => {
 		if (location === featuredPlace) setFeaturedPlace(null);
 		else setFeaturedPlace(location);
-		console.log("clicked", location.id);
 	};
 
 	return (

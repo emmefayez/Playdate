@@ -93,9 +93,7 @@ export default function PlacesForm({ anchor, onDone }) {
 					.replace(/ /g, "+")
 					.replace(/,/g, "")}`
 			);
-			console.log("result", result);
 			const splitAdd = await result.json();
-			console.log("split", splitAdd);
 
 			lat = +splitAdd.results[0].locations[0].latLng.lat;
 			lng = +splitAdd.results[0].locations[0].latLng.lng;
@@ -123,7 +121,6 @@ export default function PlacesForm({ anchor, onDone }) {
 						name="name"
 						type="text"
 						onChange={(e) => handleInputChange(e)}
-						minLength="5"
 						required
 					/>
 				</div>
@@ -137,7 +134,6 @@ export default function PlacesForm({ anchor, onDone }) {
 						name="address"
 						type="text"
 						onChange={(e) => handleInputChange(e)}
-						minLength="5"
 					/>
 					<button className="btn btn-primary" onClick={(e) => getAddress()}>
 						Get Address from Pin
