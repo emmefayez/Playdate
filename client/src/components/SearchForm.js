@@ -30,7 +30,7 @@ function SearchForm(props) {
 				/>
 				<button
 					aria-label="Search_button"
-					type="button"
+					type="submit"
 					className="btn btn-primary"
 				>
 					Search
@@ -39,7 +39,6 @@ function SearchForm(props) {
 				<div id="searchAge"></div>
 			</form>
 		</div>
-		//
 	);
 }
 
